@@ -44,7 +44,7 @@ const Header = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center">
-            <span className="text-2xl font-bold text-heritage-600">Heritage Wealth Holdings</span>
+            <span className="text-2xl font-bold text-heritage-600">Red Sun Capital, LLC</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-full md:col-span-1">
-            <h2 className="text-xl font-semibold mb-4 text-heritage-100">heritage wealth holdings</h2>
+            <h2 className="text-xl font-semibold mb-4 text-heritage-100">red sun capital, llc</h2>
             <p className="text-gray-400 mb-6">
               Providing innovative funding solutions for real estate investors.
             </p>
@@ -67,10 +67,10 @@ const Footer = () => {
               Kapolei, HI 96707
             </p>
             <a 
-              href="mailto:info@heritagewealthholdings.com" 
+              href="mailto:info@redsuncapital.com" 
               className="text-gray-400 hover:text-white transition-colors"
             >
-              info@heritagewealthholdings.com
+              info@redsuncapital.com
             </a>
           </div>
         </div>
@@ -78,7 +78,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm mb-4 md:mb-0">
-              © Copyright Heritage Wealth Holdings {new Date().getFullYear()}
+              © Copyright Red Sun Capital, LLC {new Date().getFullYear()}
             </p>
             <div className="flex space-x-6">
               <Link to="/privacy-notice" className="text-gray-500 hover:text-white text-sm transition-colors">
