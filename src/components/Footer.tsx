@@ -7,7 +7,13 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-full md:col-span-1">
-            <h2 className="text-xl font-semibold mb-4 text-heritage-100">red sun capital, llc</h2>
+            <div className="mb-4">
+              <img 
+                src="/lovable-uploads/390801ef-25e9-4d8f-95ee-f145ed45a723.png" 
+                alt="Red Sun Capital, LLC" 
+                className="h-16" 
+              />
+            </div>
             <p className="text-gray-400 mb-6">
               Providing innovative funding solutions for real estate investors.
             </p>
