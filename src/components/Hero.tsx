@@ -9,15 +9,6 @@ const Hero = () => {
       <BlurredCircle size="xl" color="primary" className="-top-64 -left-64" />
       <BlurredCircle size="lg" color="secondary" className="-bottom-64 -right-64" />
       
-      {/* Dynamic Hero Background Image */}
-      <div className="absolute inset-0 z-[-1] opacity-10">
-        <img 
-          src="/lovable-uploads/390801ef-25e9-4d8f-95ee-f145ed45a723.png" 
-          alt="Red Sun Capital Background" 
-          className="w-full h-full object-cover object-center"
-        />
-      </div>
-      
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-20">
