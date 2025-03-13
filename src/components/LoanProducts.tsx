@@ -1,5 +1,5 @@
 
-import { Home, Building, LineChart, Briefcase, ChevronDown } from 'lucide-react';
+import { Home, Building, LineChart, Briefcase, ChevronDown, HelpCircle } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import {
@@ -19,6 +19,21 @@ import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 interface LoanProductProps {
   icon: React.ReactNode;
@@ -99,17 +114,8 @@ const LoanProduct = ({
   );
 };
 
-// Loan Calculator Component
+// Enhanced Loan Calculator Component
 const LoanCalculator = ({ productType }: { productType: string }) => {
-  const form = useForm({
-    defaultValues: {
-      loanAmount: 250000,
-      loanTerm: 12,
-      interestRate: 8,
-      loanType: "interestOnly"
-    },
-  });
-
   // Default values for the various loan types
   const loanDefaults = {
     "FIX AND FLIP": {
@@ -119,6 +125,11 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
       maxTerm: 24,
       defaultRate: 8,
       loanTypes: ["interestOnly"],
+      hasRehabBudget: true,
+      minRehabBudget: 0,
+      maxRehabBudget: 1000000,
+      stepRehabBudget: 1000,
+      defaultRehabBudget: 50000,
     },
     "GROUND UP CONSTRUCTION": {
       minAmount: 200000,
@@ -127,6 +138,11 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
       maxTerm: 36,
       defaultRate: 9.5,
       loanTypes: ["construction", "interestOnly"],
+      hasConstructionBudget: true,
+      minConstructionBudget: 0,
+      maxConstructionBudget: 2000000,
+      stepConstructionBudget: 1000,
+      defaultConstructionBudget: 200000,
     },
     "INVESTOR LOANS BRIDGE": {
       minAmount: 150000,
@@ -134,7 +150,7 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
       minTerm: 6,
       maxTerm: 24,
       defaultRate: 7.5,
-      loanTypes: ["interestOnly", "amortized"],
+      loanTypes: ["interestOnly"],
     },
     "DSCR": {
       minAmount: 100000,
@@ -143,11 +159,56 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
       maxTerm: 360,
       defaultRate: 6.5,
       loanTypes: ["amortized", "interestOnly"],
+      defaultLoanAmount: 830000,
+      defaultLoanTerm: 27,
+      defaultInterestRate: 9.25,
+      defaultLoanType: "amortized",
     },
   };
 
   // Get current loan type defaults
   const currentDefaults = loanDefaults[productType as keyof typeof loanDefaults] || loanDefaults["FIX AND FLIP"];
+  
+  // Initialize form with correct default values based on product type
+  const defaultLoanAmount = productType === "DSCR" ? 830000 : currentDefaults.minAmount;
+  const defaultLoanTerm = productType === "DSCR" ? 27 : currentDefaults.minTerm;
+  const defaultInterestRate = productType === "DSCR" ? 9.25 : currentDefaults.defaultRate;
+  const defaultLoanType = productType === "DSCR" ? "amortized" : currentDefaults.loanTypes[0];
+  
+  const form = useForm({
+    defaultValues: {
+      loanAmount: defaultLoanAmount,
+      loanTerm: defaultLoanTerm,
+      interestRate: defaultInterestRate,
+      loanType: defaultLoanType,
+      rehabBudget: currentDefaults.defaultRehabBudget || 0,
+      constructionBudget: currentDefaults.defaultConstructionBudget || 0,
+    },
+  });
+
+  // Function to calculate amortization schedule
+  const calculateAmortization = (loanAmount: number, annualRate: number, termMonths: number) => {
+    // For 30-year amortization (360 months)
+    const fullTermMonths = 360;
+    const monthlyRate = annualRate / 100 / 12;
+    
+    // Calculate monthly payment based on 30-year amortization
+    const monthlyPayment = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, fullTermMonths) / 
+                          (Math.pow(1 + monthlyRate, fullTermMonths) - 1);
+    
+    // Calculate remaining balance after loan term
+    let remainingBalance = loanAmount;
+    for (let i = 0; i < termMonths; i++) {
+      const interestPayment = remainingBalance * monthlyRate;
+      const principalPayment = monthlyPayment - interestPayment;
+      remainingBalance -= principalPayment;
+    }
+    
+    return {
+      monthlyPayment,
+      remainingBalance: Math.max(0, remainingBalance)
+    };
+  };
 
   // Calculate monthly payment
   const calculatePayment = () => {
@@ -161,8 +222,9 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
     if (loanType === "interestOnly") {
       return loanAmount * monthlyRate;
     } else if (loanType === "amortized") {
-      // Use amortization formula
-      return loanAmount * monthlyRate * Math.pow(1 + monthlyRate, loanTerm) / (Math.pow(1 + monthlyRate, loanTerm) - 1);
+      // Use 30-year amortization for payment calculation
+      const amortization = calculateAmortization(loanAmount, interestRate, loanTerm);
+      return amortization.monthlyPayment;
     } else if (loanType === "construction") {
       // For construction loans, typically interest only during construction
       // Usually the draw schedule would affect this, but we'll simplify
@@ -175,137 +237,273 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
   const monthlyPayment = calculatePayment();
   const totalPayment = form.watch("loanTerm") * monthlyPayment;
   const totalInterest = totalPayment - form.watch("loanAmount");
+  
+  // Calculate balloon amount for amortized loans
+  const balloonAmount = form.watch("loanType") === "amortized" 
+    ? calculateAmortization(form.watch("loanAmount"), form.watch("interestRate"), form.watch("loanTerm")).remainingBalance
+    : null;
 
   return (
-    <div className="p-6 bg-white rounded-xl shadow-lg border border-gray-100">
-      <h2 className="text-3xl font-bold mb-6 text-heritage-600">Loan Calculator</h2>
-      <p className="text-gray-700 mb-6">
-        Estimate your {productType.toLowerCase()} loan payments based on your specific requirements.
-      </p>
-
-      <Form {...form}>
-        <div className="space-y-6">
-          <FormField
-            control={form.control}
-            name="loanAmount"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex justify-between">
-                  <FormLabel>Loan Amount: ${field.value.toLocaleString()}</FormLabel>
-                </div>
-                <FormControl>
-                  <Slider
-                    min={currentDefaults.minAmount}
-                    max={currentDefaults.maxAmount}
-                    step={10000}
-                    value={[field.value]}
-                    onValueChange={(vals) => field.onChange(vals[0])}
-                    className="mt-2"
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="loanTerm"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex justify-between">
-                  <FormLabel>Loan Term: {field.value} {field.value === 1 ? 'month' : 'months'}</FormLabel>
-                </div>
-                <FormControl>
-                  <Slider
-                    min={currentDefaults.minTerm}
-                    max={currentDefaults.maxTerm}
-                    step={1}
-                    value={[field.value]}
-                    onValueChange={(vals) => field.onChange(vals[0])}
-                    className="mt-2"
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="interestRate"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex justify-between">
-                  <FormLabel>Interest Rate: {field.value}%</FormLabel>
-                </div>
-                <FormControl>
-                  <Slider
-                    min={4}
-                    max={15}
-                    step={0.25}
-                    value={[field.value]}
-                    onValueChange={(vals) => field.onChange(vals[0])}
-                    className="mt-2"
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="loanType"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Loan Type</FormLabel>
-                <Select 
-                  onValueChange={field.onChange} 
-                  defaultValue={field.value}
-                >
+    <Card className="shadow-lg border border-gray-100">
+      <CardHeader className="bg-heritage-50 rounded-t-xl">
+        <CardTitle className="text-3xl font-bold text-heritage-600">Loan Calculator</CardTitle>
+        <CardDescription className="text-gray-700">
+          Estimate your {productType.toLowerCase()} loan payments based on your specific requirements.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="p-6 space-y-6">
+        <Form {...form}>
+          <div className="space-y-6">
+            <FormField
+              control={form.control}
+              name="loanAmount"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="flex justify-between">
+                    <FormLabel className="flex items-center gap-1">
+                      Loan Amount: ${field.value.toLocaleString()}
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <HelpCircle className="h-4 w-4 text-gray-400" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="w-56">The principal amount you wish to borrow.</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </FormLabel>
+                  </div>
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select loan type" />
-                    </SelectTrigger>
+                    <Slider
+                      min={currentDefaults.minAmount}
+                      max={currentDefaults.maxAmount}
+                      step={1000}
+                      value={[field.value]}
+                      onValueChange={(vals) => field.onChange(vals[0])}
+                      className="mt-2"
+                    />
                   </FormControl>
-                  <SelectContent>
-                    {currentDefaults.loanTypes.includes("interestOnly") && (
-                      <SelectItem value="interestOnly">Interest Only</SelectItem>
-                    )}
-                    {currentDefaults.loanTypes.includes("amortized") && (
-                      <SelectItem value="amortized">Amortized</SelectItem>
-                    )}
-                    {currentDefaults.loanTypes.includes("construction") && (
-                      <SelectItem value="construction">Construction</SelectItem>
-                    )}
-                  </SelectContent>
-                </Select>
-              </FormItem>
-            )}
-          />
-        </div>
-      </Form>
+                </FormItem>
+              )}
+            />
 
-      <div className="mt-8 bg-gray-50 p-6 rounded-lg">
+            <FormField
+              control={form.control}
+              name="loanTerm"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="flex justify-between">
+                    <FormLabel className="flex items-center gap-1">
+                      Loan Term: {field.value} {field.value === 1 ? 'month' : 'months'}
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <HelpCircle className="h-4 w-4 text-gray-400" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="w-56">The period over which the loan is to be repaid.</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </FormLabel>
+                  </div>
+                  <FormControl>
+                    <Slider
+                      min={currentDefaults.minTerm}
+                      max={currentDefaults.maxTerm}
+                      step={1}
+                      value={[field.value]}
+                      onValueChange={(vals) => field.onChange(vals[0])}
+                      className="mt-2"
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="interestRate"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="flex justify-between">
+                    <FormLabel className="flex items-center gap-1">
+                      Interest Rate: {field.value}%
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <HelpCircle className="h-4 w-4 text-gray-400" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="w-56">Annual interest rate applied to the loan.</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </FormLabel>
+                  </div>
+                  <FormControl>
+                    <Slider
+                      min={4}
+                      max={15}
+                      step={0.25}
+                      value={[field.value]}
+                      onValueChange={(vals) => field.onChange(vals[0])}
+                      className="mt-2"
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {productType === "FIX AND FLIP" && (
+              <FormField
+                control={form.control}
+                name="rehabBudget"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex justify-between">
+                      <FormLabel className="flex items-center gap-1">
+                        Rehab Budget: ${field.value.toLocaleString()}
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <HelpCircle className="h-4 w-4 text-gray-400" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p className="w-56">Estimated budget for renovation costs.</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </FormLabel>
+                    </div>
+                    <FormControl>
+                      <Slider
+                        min={0}
+                        max={1000000}
+                        step={1000}
+                        value={[field.value]}
+                        onValueChange={(vals) => field.onChange(vals[0])}
+                        className="mt-2"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            )}
+
+            {productType === "GROUND UP CONSTRUCTION" && (
+              <FormField
+                control={form.control}
+                name="constructionBudget"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex justify-between">
+                      <FormLabel className="flex items-center gap-1">
+                        Construction Budget: ${field.value.toLocaleString()}
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <HelpCircle className="h-4 w-4 text-gray-400" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p className="w-56">Estimated budget for construction costs.</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </FormLabel>
+                    </div>
+                    <FormControl>
+                      <Slider
+                        min={0}
+                        max={2000000}
+                        step={1000}
+                        value={[field.value]}
+                        onValueChange={(vals) => field.onChange(vals[0])}
+                        className="mt-2"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            )}
+
+            <FormField
+              control={form.control}
+              name="loanType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center gap-1">
+                    Amortization Type
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <HelpCircle className="h-4 w-4 text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p className="w-56">
+                          Interest Only: Pay only interest during the loan term.<br/>
+                          {productType === "DSCR" && "Amortized: Pay principal and interest based on a 30-year schedule."}
+                          {productType === "GROUND UP CONSTRUCTION" && "Construction: Interest-only payments on funds drawn during construction."}
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </FormLabel>
+                  <Select 
+                    onValueChange={field.onChange} 
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select loan type" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {currentDefaults.loanTypes.includes("interestOnly") && (
+                        <SelectItem value="interestOnly">Interest Only</SelectItem>
+                      )}
+                      {currentDefaults.loanTypes.includes("amortized") && (
+                        <SelectItem value="amortized">Amortized (30-year)</SelectItem>
+                      )}
+                      {currentDefaults.loanTypes.includes("construction") && (
+                        <SelectItem value="construction">Construction</SelectItem>
+                      )}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
+          </div>
+        </Form>
+      </CardContent>
+      
+      <div className="p-6 bg-gray-50 rounded-b-xl">
         <h3 className="text-xl font-bold mb-4 text-heritage-600">Payment Summary</h3>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-6">
           <div>
-            <p className="text-gray-600">Monthly Payment</p>
+            <p className="text-gray-600 mb-1">Monthly Payment</p>
             <p className="text-2xl font-bold">${Math.round(monthlyPayment).toLocaleString()}</p>
           </div>
           <div>
-            <p className="text-gray-600">Total Payments</p>
+            <p className="text-gray-600 mb-1">Total Payments</p>
             <p className="text-2xl font-bold">${Math.round(totalPayment).toLocaleString()}</p>
           </div>
           <div>
-            <p className="text-gray-600">Total Interest</p>
+            <p className="text-gray-600 mb-1">Total Interest</p>
             <p className="text-2xl font-bold">${Math.round(totalInterest).toLocaleString()}</p>
           </div>
           <div>
-            <p className="text-gray-600">Loan to Value</p>
+            <p className="text-gray-600 mb-1">Loan to Value</p>
             <p className="text-2xl font-bold">Up to 80%</p>
           </div>
+          {balloonAmount !== null && (
+            <div className="col-span-2">
+              <p className="text-gray-600 mb-1 flex items-center gap-1">
+                Balloon Amount
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <HelpCircle className="h-4 w-4 text-gray-400" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="w-56">The remaining principal balance due at the end of the loan term.</p>
+                  </TooltipContent>
+                </Tooltip>
+              </p>
+              <p className="text-2xl font-bold">${Math.round(balloonAmount).toLocaleString()}</p>
+            </div>
+          )}
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
 
@@ -353,7 +551,7 @@ const LoanProducts = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <div className="space-y-2 max-w-lg">
+            <div className="space-y-3 max-w-lg">
               {products.map((product, index) => (
                 <LoanProduct
                   key={index}
