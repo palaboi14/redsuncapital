@@ -1,4 +1,3 @@
-
 import { Home, Building, LineChart, Briefcase, ChevronDown, HelpCircle } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -114,10 +113,47 @@ const LoanProduct = ({
   );
 };
 
-// Enhanced Loan Calculator Component
+interface BaseLoanDefaults {
+  minAmount: number;
+  maxAmount: number;
+  minTerm: number;
+  maxTerm: number;
+  defaultRate: number;
+  loanTypes: string[];
+}
+
+interface FixAndFlipLoanDefaults extends BaseLoanDefaults {
+  hasRehabBudget: boolean;
+  minRehabBudget: number;
+  maxRehabBudget: number;
+  stepRehabBudget: number;
+  defaultRehabBudget: number;
+}
+
+interface ConstructionLoanDefaults extends BaseLoanDefaults {
+  hasConstructionBudget: boolean;
+  minConstructionBudget: number;
+  maxConstructionBudget: number;
+  stepConstructionBudget: number;
+  defaultConstructionBudget: number;
+}
+
+interface DSCRLoanDefaults extends BaseLoanDefaults {
+  defaultLoanAmount: number;
+  defaultLoanTerm: number;
+  defaultInterestRate: number;
+  defaultLoanType: string;
+}
+
+interface LoanDefaultsMap {
+  "FIX AND FLIP": FixAndFlipLoanDefaults;
+  "GROUND UP CONSTRUCTION": ConstructionLoanDefaults;
+  "INVESTOR LOANS BRIDGE": BaseLoanDefaults;
+  "DSCR": DSCRLoanDefaults;
+}
+
 const LoanCalculator = ({ productType }: { productType: string }) => {
-  // Default values for the various loan types
-  const loanDefaults = {
+  const loanDefaults: LoanDefaultsMap = {
     "FIX AND FLIP": {
       minAmount: 100000,
       maxAmount: 2000000,
@@ -166,14 +202,20 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
     },
   };
 
-  // Get current loan type defaults
   const currentDefaults = loanDefaults[productType as keyof typeof loanDefaults] || loanDefaults["FIX AND FLIP"];
   
-  // Initialize form with correct default values based on product type
   const defaultLoanAmount = productType === "DSCR" ? 830000 : currentDefaults.minAmount;
   const defaultLoanTerm = productType === "DSCR" ? 27 : currentDefaults.minTerm;
   const defaultInterestRate = productType === "DSCR" ? 9.25 : currentDefaults.defaultRate;
   const defaultLoanType = productType === "DSCR" ? "amortized" : currentDefaults.loanTypes[0];
+  
+  const defaultRehabBudget = 'defaultRehabBudget' in currentDefaults 
+    ? (currentDefaults as FixAndFlipLoanDefaults).defaultRehabBudget 
+    : 0;
+  
+  const defaultConstructionBudget = 'defaultConstructionBudget' in currentDefaults 
+    ? (currentDefaults as ConstructionLoanDefaults).defaultConstructionBudget 
+    : 0;
   
   const form = useForm({
     defaultValues: {
@@ -181,22 +223,18 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
       loanTerm: defaultLoanTerm,
       interestRate: defaultInterestRate,
       loanType: defaultLoanType,
-      rehabBudget: currentDefaults.defaultRehabBudget || 0,
-      constructionBudget: currentDefaults.defaultConstructionBudget || 0,
+      rehabBudget: defaultRehabBudget,
+      constructionBudget: defaultConstructionBudget,
     },
   });
 
-  // Function to calculate amortization schedule
   const calculateAmortization = (loanAmount: number, annualRate: number, termMonths: number) => {
-    // For 30-year amortization (360 months)
     const fullTermMonths = 360;
     const monthlyRate = annualRate / 100 / 12;
     
-    // Calculate monthly payment based on 30-year amortization
     const monthlyPayment = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, fullTermMonths) / 
                           (Math.pow(1 + monthlyRate, fullTermMonths) - 1);
     
-    // Calculate remaining balance after loan term
     let remainingBalance = loanAmount;
     for (let i = 0; i < termMonths; i++) {
       const interestPayment = remainingBalance * monthlyRate;
@@ -210,7 +248,6 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
     };
   };
 
-  // Calculate monthly payment
   const calculatePayment = () => {
     const loanAmount = form.watch("loanAmount");
     const loanTerm = form.watch("loanTerm");
@@ -222,13 +259,10 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
     if (loanType === "interestOnly") {
       return loanAmount * monthlyRate;
     } else if (loanType === "amortized") {
-      // Use 30-year amortization for payment calculation
       const amortization = calculateAmortization(loanAmount, interestRate, loanTerm);
       return amortization.monthlyPayment;
     } else if (loanType === "construction") {
-      // For construction loans, typically interest only during construction
-      // Usually the draw schedule would affect this, but we'll simplify
-      return (loanAmount / 2) * monthlyRate; // Assume average 50% drawn
+      return (loanAmount / 2) * monthlyRate;
     }
     
     return 0;
@@ -238,7 +272,6 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
   const totalPayment = form.watch("loanTerm") * monthlyPayment;
   const totalInterest = totalPayment - form.watch("loanAmount");
   
-  // Calculate balloon amount for amortized loans
   const balloonAmount = form.watch("loanType") === "amortized" 
     ? calculateAmortization(form.watch("loanAmount"), form.watch("interestRate"), form.watch("loanTerm")).remainingBalance
     : null;
