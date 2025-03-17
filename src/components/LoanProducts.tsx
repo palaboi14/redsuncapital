@@ -1,4 +1,5 @@
-import { Home, Building, LineChart, Briefcase, ChevronDown, HelpCircle } from 'lucide-react';
+
+import { Home, Building, LineChart, Briefcase, ChevronDown, HelpCircle, RefreshCw } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import {
@@ -33,6 +34,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 interface LoanProductProps {
   icon: React.ReactNode;
@@ -113,6 +115,7 @@ const LoanProduct = ({
   );
 };
 
+// Define interfaces for different loan types
 interface BaseLoanDefaults {
   minAmount: number;
   maxAmount: number;
@@ -120,6 +123,7 @@ interface BaseLoanDefaults {
   maxTerm: number;
   defaultRate: number;
   loanTypes: string[];
+  ltv: number;
 }
 
 interface FixAndFlipLoanDefaults extends BaseLoanDefaults {
@@ -143,6 +147,7 @@ interface DSCRLoanDefaults extends BaseLoanDefaults {
   defaultLoanTerm: number;
   defaultInterestRate: number;
   defaultLoanType: string;
+  validTerms: number[];
 }
 
 interface LoanDefaultsMap {
@@ -155,59 +160,71 @@ interface LoanDefaultsMap {
 const LoanCalculator = ({ productType }: { productType: string }) => {
   const loanDefaults: LoanDefaultsMap = {
     "FIX AND FLIP": {
-      minAmount: 100000,
-      maxAmount: 2000000,
-      minTerm: 6,
-      maxTerm: 24,
-      defaultRate: 8,
+      minAmount: 10000,
+      maxAmount: 10000000,
+      minTerm: 12,
+      maxTerm: 360,
+      defaultRate: 7.5,
       loanTypes: ["interestOnly"],
       hasRehabBudget: true,
       minRehabBudget: 0,
       maxRehabBudget: 1000000,
       stepRehabBudget: 1000,
       defaultRehabBudget: 50000,
+      ltv: 80,
     },
     "GROUND UP CONSTRUCTION": {
-      minAmount: 200000,
-      maxAmount: 5000000,
+      minAmount: 10000,
+      maxAmount: 10000000,
       minTerm: 12,
-      maxTerm: 36,
-      defaultRate: 9.5,
-      loanTypes: ["construction", "interestOnly"],
+      maxTerm: 360,
+      defaultRate: 7.5,
+      loanTypes: ["interestOnly", "amortized"],
       hasConstructionBudget: true,
       minConstructionBudget: 0,
       maxConstructionBudget: 2000000,
       stepConstructionBudget: 1000,
       defaultConstructionBudget: 200000,
+      ltv: 90,
     },
     "INVESTOR LOANS BRIDGE": {
-      minAmount: 150000,
-      maxAmount: 3000000,
-      minTerm: 6,
-      maxTerm: 24,
-      defaultRate: 7.5,
-      loanTypes: ["interestOnly"],
-    },
-    "DSCR": {
-      minAmount: 100000,
-      maxAmount: 2500000,
+      minAmount: 10000,
+      maxAmount: 10000000,
       minTerm: 12,
       maxTerm: 360,
-      defaultRate: 6.5,
-      loanTypes: ["amortized", "interestOnly"],
-      defaultLoanAmount: 830000,
-      defaultLoanTerm: 27,
-      defaultInterestRate: 9.25,
-      defaultLoanType: "amortized",
+      defaultRate: 7.5,
+      loanTypes: ["interestOnly"],
+      ltv: 80,
+    },
+    "DSCR": {
+      minAmount: 10000,
+      maxAmount: 10000000,
+      minTerm: 120,
+      maxTerm: 360,
+      defaultRate: 7.5,
+      loanTypes: ["interestOnly", "amortized"],
+      defaultLoanAmount: 100000,
+      defaultLoanTerm: 120,
+      defaultInterestRate: 7.5,
+      defaultLoanType: "interestOnly",
+      validTerms: [120, 360],
+      ltv: 80,
     },
   };
 
-  const currentDefaults = loanDefaults[productType as keyof typeof loanDefaults] || loanDefaults["FIX AND FLIP"];
+  const currentDefaults = loanDefaults[productType as keyof typeof loanDefaults] || loanDefaults["GROUND UP CONSTRUCTION"];
   
-  const defaultLoanAmount = productType === "DSCR" ? 830000 : currentDefaults.minAmount;
-  const defaultLoanTerm = productType === "DSCR" ? 27 : currentDefaults.minTerm;
-  const defaultInterestRate = productType === "DSCR" ? 9.25 : currentDefaults.defaultRate;
-  const defaultLoanType = productType === "DSCR" ? "amortized" : currentDefaults.loanTypes[0];
+  // Set default values based on loan type
+  const defaultLoanAmount = productType === "DSCR" && 'defaultLoanAmount' in currentDefaults 
+    ? (currentDefaults as DSCRLoanDefaults).defaultLoanAmount 
+    : 100000;
+  
+  const defaultLoanTerm = productType === "DSCR" && 'defaultLoanTerm' in currentDefaults 
+    ? (currentDefaults as DSCRLoanDefaults).defaultLoanTerm 
+    : 36;
+  
+  const defaultInterestRate = 7.5;
+  const defaultLoanType = "interestOnly";
   
   const defaultRehabBudget = 'defaultRehabBudget' in currentDefaults 
     ? (currentDefaults as FixAndFlipLoanDefaults).defaultRehabBudget 
@@ -216,7 +233,7 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
   const defaultConstructionBudget = 'defaultConstructionBudget' in currentDefaults 
     ? (currentDefaults as ConstructionLoanDefaults).defaultConstructionBudget 
     : 0;
-  
+
   const form = useForm({
     defaultValues: {
       loanAmount: defaultLoanAmount,
@@ -227,6 +244,41 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
       constructionBudget: defaultConstructionBudget,
     },
   });
+
+  // Function to validate and adjust input values
+  const validateInputs = () => {
+    const interestRate = form.getValues("interestRate");
+    const loanTerm = form.getValues("loanTerm");
+    
+    if (interestRate < 7.5) {
+      form.setValue("interestRate", 7.5);
+      toast.error("Interest rate cannot be less than 7.5%");
+    }
+    
+    if (productType === "DSCR") {
+      const validTerms = (currentDefaults as DSCRLoanDefaults).validTerms;
+      if (!validTerms.includes(loanTerm)) {
+        const closestTerm = validTerms.reduce((prev, curr) => 
+          Math.abs(curr - loanTerm) < Math.abs(prev - loanTerm) ? curr : prev
+        );
+        form.setValue("loanTerm", closestTerm);
+        toast.info(`DSCR loans only support ${validTerms.join(" or ")} month terms`);
+      }
+    }
+  };
+
+  // Reset form to default values
+  const resetForm = () => {
+    form.reset({
+      loanAmount: defaultLoanAmount,
+      loanTerm: defaultLoanTerm,
+      interestRate: defaultInterestRate,
+      loanType: defaultLoanType,
+      rehabBudget: defaultRehabBudget,
+      constructionBudget: defaultConstructionBudget,
+    });
+    toast.success("Calculator reset to default values");
+  };
 
   const calculateAmortization = (loanAmount: number, annualRate: number, termMonths: number) => {
     const fullTermMonths = 360;
@@ -268,9 +320,11 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
     return 0;
   };
 
+  // Calculate payment summary values
   const monthlyPayment = calculatePayment();
   const totalPayment = form.watch("loanTerm") * monthlyPayment;
   const totalInterest = totalPayment - form.watch("loanAmount");
+  const ltv = currentDefaults.ltv;
   
   const balloonAmount = form.watch("loanType") === "amortized" 
     ? calculateAmortization(form.watch("loanAmount"), form.watch("interestRate"), form.watch("loanTerm")).remainingBalance
@@ -287,6 +341,18 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
       <CardContent className="p-6 space-y-6">
         <Form {...form}>
           <div className="space-y-6">
+            <div className="flex justify-end">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={resetForm}
+                className="flex items-center gap-1"
+              >
+                <RefreshCw className="h-4 w-4" />
+                Reset
+              </Button>
+            </div>
+            
             <FormField
               control={form.control}
               name="loanAmount"
@@ -300,7 +366,7 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
                           <HelpCircle className="h-4 w-4 text-gray-400" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p className="w-56">The principal amount you wish to borrow.</p>
+                          <p className="w-56">The principal amount you wish to borrow ($10,000 - $10,000,000).</p>
                         </TooltipContent>
                       </Tooltip>
                     </FormLabel>
@@ -311,7 +377,10 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
                       max={currentDefaults.maxAmount}
                       step={1000}
                       value={[field.value]}
-                      onValueChange={(vals) => field.onChange(vals[0])}
+                      onValueChange={(vals) => {
+                        field.onChange(vals[0]);
+                        validateInputs();
+                      }}
                       className="mt-2"
                     />
                   </FormControl>
@@ -332,20 +401,44 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
                           <HelpCircle className="h-4 w-4 text-gray-400" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p className="w-56">The period over which the loan is to be repaid.</p>
+                          <p className="w-56">
+                            {productType === "DSCR" 
+                              ? "DSCR loans only support 120 or 360 month terms." 
+                              : "The period over which the loan is to be repaid (12-360 months)."}
+                          </p>
                         </TooltipContent>
                       </Tooltip>
                     </FormLabel>
                   </div>
                   <FormControl>
-                    <Slider
-                      min={currentDefaults.minTerm}
-                      max={currentDefaults.maxTerm}
-                      step={1}
-                      value={[field.value]}
-                      onValueChange={(vals) => field.onChange(vals[0])}
-                      className="mt-2"
-                    />
+                    {productType === "DSCR" ? (
+                      <Select
+                        value={String(field.value)}
+                        onValueChange={(value) => {
+                          field.onChange(Number(value));
+                        }}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select loan term" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="120">120 months (10 years)</SelectItem>
+                          <SelectItem value="360">360 months (30 years)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    ) : (
+                      <Slider
+                        min={currentDefaults.minTerm}
+                        max={currentDefaults.maxTerm}
+                        step={1}
+                        value={[field.value]}
+                        onValueChange={(vals) => {
+                          field.onChange(vals[0]);
+                          validateInputs();
+                        }}
+                        className="mt-2"
+                      />
+                    )}
                   </FormControl>
                 </FormItem>
               )}
@@ -364,18 +457,21 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
                           <HelpCircle className="h-4 w-4 text-gray-400" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p className="w-56">Annual interest rate applied to the loan.</p>
+                          <p className="w-56">Annual interest rate applied to the loan (minimum 7.5%).</p>
                         </TooltipContent>
                       </Tooltip>
                     </FormLabel>
                   </div>
                   <FormControl>
                     <Slider
-                      min={4}
+                      min={7.5}
                       max={15}
-                      step={0.25}
+                      step={0.1}
                       value={[field.value]}
-                      onValueChange={(vals) => field.onChange(vals[0])}
+                      onValueChange={(vals) => {
+                        field.onChange(vals[0]);
+                        validateInputs();
+                      }}
                       className="mt-2"
                     />
                   </FormControl>
@@ -465,8 +561,8 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
                       <TooltipContent>
                         <p className="w-56">
                           Interest Only: Pay only interest during the loan term.<br/>
-                          {productType === "DSCR" && "Amortized: Pay principal and interest based on a 30-year schedule."}
-                          {productType === "GROUND UP CONSTRUCTION" && "Construction: Interest-only payments on funds drawn during construction."}
+                          {currentDefaults.loanTypes.includes("amortized") && "Amortized: Pay principal and interest based on a 30-year schedule."}
+                          {currentDefaults.loanTypes.includes("construction") && "Construction: Interest-only payments on funds drawn during construction."}
                         </p>
                       </TooltipContent>
                     </Tooltip>
@@ -507,16 +603,12 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
             <p className="text-2xl font-bold">${Math.round(monthlyPayment).toLocaleString()}</p>
           </div>
           <div>
-            <p className="text-gray-600 mb-1">Total Payments</p>
-            <p className="text-2xl font-bold">${Math.round(totalPayment).toLocaleString()}</p>
-          </div>
-          <div>
             <p className="text-gray-600 mb-1">Total Interest</p>
             <p className="text-2xl font-bold">${Math.round(totalInterest).toLocaleString()}</p>
           </div>
           <div>
             <p className="text-gray-600 mb-1">Loan to Value</p>
-            <p className="text-2xl font-bold">Up to 80%</p>
+            <p className="text-2xl font-bold">{ltv}%</p>
           </div>
           {balloonAmount !== null && (
             <div className="col-span-2">
@@ -541,7 +633,7 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
 };
 
 const LoanProducts = () => {
-  const [activeProduct, setActiveProduct] = useState(0);
+  const [activeProduct, setActiveProduct] = useState(1); // Default to Ground Up Construction
   const [expandedProduct, setExpandedProduct] = useState<number | null>(null);
   
   const products = [
@@ -549,7 +641,7 @@ const LoanProducts = () => {
       icon: <Home size={24} />,
       title: "FIX AND FLIP",
       description: "Perfect for investors looking to renovate and sell properties for profit.",
-      longDescription: "Our Fix and Flip loans are designed for real estate investors who purchase properties to renovate and resell them quickly for profit. These short-term loans typically range from 6-24 months and offer competitive rates with up to 90% LTV and 100% of rehab costs. Our streamlined process ensures quick closings, allowing you to move fast on opportunities. Interest-only payments during the renovation period help maximize your cash flow."
+      longDescription: "Our Fix and Flip loans are designed for real estate investors who purchase properties to renovate and resell them quickly for profit. These short-term loans typically range from 6-24 months and offer competitive rates with up to 80% LTV and 100% of rehab costs. Our streamlined process ensures quick closings, allowing you to move fast on opportunities. Interest-only payments during the renovation period help maximize your cash flow."
     },
     {
       icon: <Building size={24} />,
@@ -567,7 +659,7 @@ const LoanProducts = () => {
       icon: <LineChart size={24} />,
       title: "DSCR",
       description: "Debt Service Coverage Ratio loans for investment property acquisitions.",
-      longDescription: "DSCR (Debt Service Coverage Ratio) loans are based on the property's income rather than the borrower's personal income. This makes them ideal for real estate investors with multiple properties or self-employed individuals. These loans qualify based on whether the property's income covers debt payments. We offer DSCR loans with competitive rates, longer terms (up to 30 years), no personal income verification, and availability for both individual investors and LLCs. They're perfect for building a portfolio of cash-flowing rental properties."
+      longDescription: "DSCR (Debt Service Coverage Ratio) loans are based on the property's income rather than the borrower's personal income. This makes them ideal for real estate investors with multiple properties or self-employed individuals. These loans qualify based on whether the property's income covers debt payments. We offer DSCR loans with competitive rates, longer terms (10 or 30 years), no personal income verification, and availability for both individual investors and LLCs. They're perfect for building a portfolio of cash-flowing rental properties."
     },
   ];
 
