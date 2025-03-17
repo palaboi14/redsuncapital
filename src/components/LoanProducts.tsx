@@ -1,4 +1,4 @@
-import { Home, Building, LineChart, Briefcase, ChevronDown, HelpCircle, RefreshCw } from 'lucide-react';
+import { Home, Building, LineChart, Briefcase, ChevronDown, HelpCircle, RefreshCw, FileText } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import {
@@ -34,6 +34,14 @@ import {
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface LoanProductProps {
   icon: React.ReactNode;
@@ -44,7 +52,44 @@ interface LoanProductProps {
   expanded: boolean;
   onToggleExpand: () => void;
   longDescription: string;
+  documentRequirements: string[];
 }
+
+const DocumentRequirementsDialog = ({ 
+  title, 
+  requirements 
+}: { 
+  title: string; 
+  requirements: string[] 
+}) => {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button 
+          className="flex items-center gap-1 text-sm text-heritage-500 hover:text-heritage-600 mt-3"
+        >
+          <FileText className="h-4 w-4" />
+          <span>Documents & Requirements</span>
+        </button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="text-heritage-600">{title} - Required Documents</DialogTitle>
+          <DialogDescription>
+            Please prepare the following documents for your loan application.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="py-4">
+          <ul className="list-disc pl-5 space-y-2">
+            {requirements.map((requirement, index) => (
+              <li key={index} className="text-gray-700">{requirement}</li>
+            ))}
+          </ul>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 const LoanProduct = ({
   icon,
@@ -54,7 +99,8 @@ const LoanProduct = ({
   onClick,
   expanded,
   onToggleExpand,
-  longDescription
+  longDescription,
+  documentRequirements
 }: LoanProductProps) => {
   return (
     <div className="mb-4">
@@ -107,7 +153,8 @@ const LoanProduct = ({
       
       {expanded && (
         <div className="mt-2 p-6 bg-white/80 rounded-xl border border-gray-100 text-gray-700">
-          {longDescription}
+          <div className="mb-4">{longDescription}</div>
+          <DocumentRequirementsDialog title={title} requirements={documentRequirements} />
         </div>
       )}
     </div>
@@ -652,25 +699,70 @@ const LoanProducts = () => {
       icon: <Home size={24} />,
       title: "FIX AND FLIP",
       description: "Perfect for investors looking to renovate and sell properties for profit.",
-      longDescription: "Our Fix and Flip loans are designed for real estate investors who purchase properties to renovate and resell them quickly for profit. These short-term loans typically range from 6-24 months and offer competitive rates with up to 80% LTV and 100% of rehab costs. Our streamlined process ensures quick closings, allowing you to move fast on opportunities. Interest-only payments during the renovation period help maximize your cash flow."
+      longDescription: "Our Fix and Flip loans are designed for real estate investors who purchase properties to renovate and resell them quickly for profit. These short-term loans typically range from 6-24 months and offer competitive rates with up to 80% LTV and 100% of rehab costs. Our streamlined process ensures quick closings, allowing you to move fast on opportunities. Interest-only payments during the renovation period help maximize your cash flow.",
+      documentRequirements: [
+        "Property purchase agreement",
+        "Proof of funds or pre-approval letter",
+        "Detailed renovation budget and timeline",
+        "Contractor bids and agreements",
+        "Proof of insurance",
+        "Personal and business tax returns (last 2 years)",
+        "Recent bank statements (last 3 months)",
+        "Property comparables for after-repair value",
+        "Exit strategy documentation"
+      ]
     },
     {
       icon: <Building size={24} />,
       title: "GROUND UP CONSTRUCTION",
       description: "Finance new construction projects with flexible terms and competitive rates.",
-      longDescription: "Ground Up Construction loans provide financing for new construction projects from the ground up. These loans cover land acquisition, development, and building construction costs. We offer flexible draw schedules aligned with construction milestones, with terms typically ranging from 12-36 months. Our construction loans feature interest-only payments during the building phase on funds drawn and can transition to permanent financing if needed. We understand construction timelines and provide the flexibility needed for successful project completion."
+      longDescription: "Ground Up Construction loans provide financing for new construction projects from the ground up. These loans cover land acquisition, development, and building construction costs. We offer flexible draw schedules aligned with construction milestones, with terms typically ranging from 12-36 months. Our construction loans feature interest-only payments during the building phase on funds drawn and can transition to permanent financing if needed. We understand construction timelines and provide the flexibility needed for successful project completion.",
+      documentRequirements: [
+        "Architectural plans and specifications",
+        "Construction budget and timeline",
+        "Builder/contractor license and insurance",
+        "Land ownership documentation",
+        "Building permits and zoning approvals",
+        "Environmental assessments",
+        "Project feasibility study",
+        "Personal and business financial statements",
+        "Construction contract",
+        "Builder's risk insurance policy"
+      ]
     },
     {
       icon: <Briefcase size={24} />,
       title: "INVESTOR LOANS BRIDGE",
       description: "Short-term financing to bridge the gap between property purchases.",
-      longDescription: "Bridge loans provide short-term financing to 'bridge the gap' between transactions, such as purchasing a new property before selling an existing one. These loans typically range from 6-24 months with competitive rates and quick closings (as fast as 10 days). They're ideal for time-sensitive opportunities, auction purchases, or securing properties while arranging long-term financing. Our bridge loans offer flexible exit strategies and minimal documentation requirements compared to traditional loans."
+      longDescription: "Bridge loans provide short-term financing to 'bridge the gap' between transactions, such as purchasing a new property before selling an existing one. These loans typically range from 6-24 months with competitive rates and quick closings (as fast as 10 days). They're ideal for time-sensitive opportunities, auction purchases, or securing properties while arranging long-term financing. Our bridge loans offer flexible exit strategies and minimal documentation requirements compared to traditional loans.",
+      documentRequirements: [
+        "Purchase agreement for new property",
+        "Current property ownership documentation",
+        "Proof of equity in existing property",
+        "Exit strategy documentation",
+        "Personal and business financial statements",
+        "Credit report",
+        "Property appraisal",
+        "Proof of insurance",
+        "Bank statements (last 3 months)"
+      ]
     },
     {
       icon: <LineChart size={24} />,
       title: "DSCR",
       description: "Debt Service Coverage Ratio loans for investment property acquisitions.",
-      longDescription: "DSCR (Debt Service Coverage Ratio) loans are based on the property's income rather than the borrower's personal income. This makes them ideal for real estate investors with multiple properties or self-employed individuals. These loans qualify based on whether the property's income covers debt payments. We offer DSCR loans with competitive rates, longer terms (10 or 30 years), no personal income verification, and availability for both individual investors and LLCs. They're perfect for building a portfolio of cash-flowing rental properties."
+      longDescription: "DSCR (Debt Service Coverage Ratio) loans are based on the property's income rather than the borrower's personal income. This makes them ideal for real estate investors with multiple properties or self-employed individuals. These loans qualify based on whether the property's income covers debt payments. We offer DSCR loans with competitive rates, longer terms (10 or 30 years), no personal income verification, and availability for both individual investors and LLCs. They're perfect for building a portfolio of cash-flowing rental properties.",
+      documentRequirements: [
+        "Property rent roll and lease agreements",
+        "Property expense documentation",
+        "Purchase agreement",
+        "Entity documentation (if applying as LLC/corporation)",
+        "Property insurance proof",
+        "Bank statements (last 2 months)",
+        "Property management agreement (if applicable)",
+        "Property appraisal",
+        "Property tax statements"
+      ]
     },
   ];
 
@@ -695,6 +787,7 @@ const LoanProducts = () => {
                   title={product.title}
                   description={product.description}
                   longDescription={product.longDescription}
+                  documentRequirements={product.documentRequirements}
                   active={activeProduct === index}
                   onClick={() => setActiveProduct(index)}
                   expanded={expandedProduct === index}
