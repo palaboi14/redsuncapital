@@ -1,3 +1,4 @@
+
 import { Home, Building, LineChart, Briefcase, ChevronDown, HelpCircle, RefreshCw } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -296,20 +297,27 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
   };
 
   const calculatePayment = () => {
-    const loanAmount = form.watch("loanAmount");
+    const baseLoanAmount = form.watch("loanAmount");
     const loanTerm = form.watch("loanTerm");
     const interestRate = form.watch("interestRate");
     const loanType = form.watch("loanType");
+    const rehabBudget = form.watch("rehabBudget") || 0;
+    const constructionBudget = form.watch("constructionBudget") || 0;
+    
+    // Calculate total loan amount based on product type
+    const totalLoanAmount = baseLoanAmount + 
+      (productType === "FIX AND FLIP" ? rehabBudget : 0) + 
+      (productType === "GROUND UP CONSTRUCTION" ? constructionBudget : 0);
     
     const monthlyRate = interestRate / 100 / 12;
     
     if (loanType === "interestOnly") {
-      return loanAmount * monthlyRate;
+      return totalLoanAmount * monthlyRate;
     } else if (loanType === "amortized") {
-      const amortization = calculateAmortization(loanAmount, interestRate, loanTerm);
+      const amortization = calculateAmortization(totalLoanAmount, interestRate, loanTerm);
       return amortization.monthlyPayment;
     } else if (loanType === "construction") {
-      return (loanAmount / 2) * monthlyRate;
+      return (totalLoanAmount / 2) * monthlyRate;
     }
     
     return 0;
@@ -317,16 +325,16 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
 
   const monthlyPayment = calculatePayment();
   const totalPayment = form.watch("loanTerm") * monthlyPayment;
-  const totalInterest = totalPayment - form.watch("loanAmount");
-  const ltv = currentDefaults.ltv;
   
   const rehabBudget = form.watch("rehabBudget") || 0;
   const constructionBudget = form.watch("constructionBudget") || 0;
   const totalLoanAmount = form.watch("loanAmount") + (productType === "FIX AND FLIP" ? rehabBudget : 0) + 
     (productType === "GROUND UP CONSTRUCTION" ? constructionBudget : 0);
   
+  const ltv = currentDefaults.ltv;
+  
   const balloonAmount = form.watch("loanType") === "amortized" 
-    ? calculateAmortization(form.watch("loanAmount"), form.watch("interestRate"), form.watch("loanTerm")).remainingBalance
+    ? calculateAmortization(totalLoanAmount, form.watch("interestRate"), form.watch("loanTerm")).remainingBalance
     : null;
 
   return (
