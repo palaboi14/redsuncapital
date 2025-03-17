@@ -1,4 +1,3 @@
-
 import { Home, Building, LineChart, Briefcase, ChevronDown, HelpCircle, RefreshCw } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -277,11 +276,10 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
   };
 
   const calculateAmortization = (loanAmount: number, annualRate: number, termMonths: number) => {
-    const fullTermMonths = 360;
     const monthlyRate = annualRate / 100 / 12;
     
-    const monthlyPayment = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, fullTermMonths) / 
-                          (Math.pow(1 + monthlyRate, fullTermMonths) - 1);
+    const monthlyPayment = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, termMonths) / 
+                          (Math.pow(1 + monthlyRate, termMonths) - 1);
     
     let remainingBalance = loanAmount;
     for (let i = 0; i < termMonths; i++) {
@@ -304,7 +302,6 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
     const rehabBudget = form.watch("rehabBudget") || 0;
     const constructionBudget = form.watch("constructionBudget") || 0;
     
-    // Calculate total loan amount based on product type
     const totalLoanAmount = baseLoanAmount + 
       (productType === "FIX AND FLIP" ? rehabBudget : 0) + 
       (productType === "GROUND UP CONSTRUCTION" ? constructionBudget : 0);
@@ -335,7 +332,7 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
   
   const balloonAmount = form.watch("loanType") === "amortized" 
     ? calculateAmortization(totalLoanAmount, form.watch("interestRate"), form.watch("loanTerm")).remainingBalance
-    : null;
+    : totalLoanAmount;
 
   return (
     <Card className="shadow-lg border border-gray-100">
