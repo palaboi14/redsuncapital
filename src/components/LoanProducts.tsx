@@ -1,4 +1,3 @@
-
 import { Home, Building, LineChart, Briefcase, ChevronDown, HelpCircle, RefreshCw } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -115,7 +114,6 @@ const LoanProduct = ({
   );
 };
 
-// Define interfaces for different loan types
 interface BaseLoanDefaults {
   minAmount: number;
   maxAmount: number;
@@ -214,7 +212,6 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
 
   const currentDefaults = loanDefaults[productType as keyof typeof loanDefaults] || loanDefaults["GROUND UP CONSTRUCTION"];
   
-  // Set default values based on loan type
   const defaultLoanAmount = productType === "DSCR" && 'defaultLoanAmount' in currentDefaults 
     ? (currentDefaults as DSCRLoanDefaults).defaultLoanAmount 
     : 100000;
@@ -245,7 +242,6 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
     },
   });
 
-  // Function to validate and adjust input values
   const validateInputs = () => {
     const interestRate = form.getValues("interestRate");
     const loanTerm = form.getValues("loanTerm");
@@ -267,7 +263,6 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
     }
   };
 
-  // Reset form to default values
   const resetForm = () => {
     form.reset({
       loanAmount: defaultLoanAmount,
@@ -320,11 +315,15 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
     return 0;
   };
 
-  // Calculate payment summary values
   const monthlyPayment = calculatePayment();
   const totalPayment = form.watch("loanTerm") * monthlyPayment;
   const totalInterest = totalPayment - form.watch("loanAmount");
   const ltv = currentDefaults.ltv;
+  
+  const rehabBudget = form.watch("rehabBudget") || 0;
+  const constructionBudget = form.watch("constructionBudget") || 0;
+  const totalLoanAmount = form.watch("loanAmount") + (productType === "FIX AND FLIP" ? rehabBudget : 0) + 
+    (productType === "GROUND UP CONSTRUCTION" ? constructionBudget : 0);
   
   const balloonAmount = form.watch("loanType") === "amortized" 
     ? calculateAmortization(form.watch("loanAmount"), form.watch("interestRate"), form.watch("loanTerm")).remainingBalance
@@ -360,7 +359,7 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
                 <FormItem>
                   <div className="flex justify-between">
                     <FormLabel className="flex items-center gap-1">
-                      Loan Amount: ${field.value.toLocaleString()}
+                      Base Loan Amount: ${field.value.toLocaleString()}
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <HelpCircle className="h-4 w-4 text-gray-400" />
@@ -603,8 +602,15 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
             <p className="text-2xl font-bold">${Math.round(monthlyPayment).toLocaleString()}</p>
           </div>
           <div>
-            <p className="text-gray-600 mb-1">Total Interest</p>
-            <p className="text-2xl font-bold">${Math.round(totalInterest).toLocaleString()}</p>
+            <p className="text-gray-600 mb-1">Total Loan Amount</p>
+            <p className="text-2xl font-bold">${Math.round(totalLoanAmount).toLocaleString()}</p>
+            <p className="text-xs text-gray-500 mt-1">
+              {productType === "FIX AND FLIP" && rehabBudget > 0 ? 
+                `Base: $${form.watch("loanAmount").toLocaleString()} + Rehab: $${rehabBudget.toLocaleString()}` : 
+                productType === "GROUND UP CONSTRUCTION" && constructionBudget > 0 ? 
+                `Base: $${form.watch("loanAmount").toLocaleString()} + Construction: $${constructionBudget.toLocaleString()}` : 
+                "Base loan amount only"}
+            </p>
           </div>
           <div>
             <p className="text-gray-600 mb-1">Loan to Value</p>
