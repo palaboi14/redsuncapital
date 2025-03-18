@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -11,7 +10,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/390801ef-25e9-4d8f-95ee-f145ed45a723.png" 
                 alt="Red Sun Capital, LLC" 
-                className="h-16" 
+                className="h-16 brightness-0 invert" 
               />
             </div>
             <p className="text-gray-400 mb-6">
