@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -8,11 +7,14 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-full md:col-span-1">
             <div className="mb-4">
-              <img 
-                src="/lovable-uploads/390801ef-25e9-4d8f-95ee-f145ed45a723.png" 
-                alt="Red Sun Capital, LLC" 
-                className="h-16" 
-              />
+              <div className="relative inline-block">
+                <img 
+                  src="/lovable-uploads/390801ef-25e9-4d8f-95ee-f145ed45a723.png" 
+                  alt="Red Sun Capital, LLC" 
+                  className="h-16 brightness-0 invert" 
+                />
+                <div className="absolute top-0 left-0 w-10 h-10 bg-heritage-600 mix-blend-multiply rounded-full"></div>
+              </div>
             </div>
             <p className="text-gray-400 mb-6">
               Providing innovative funding solutions for real estate investors.
