@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -13,7 +14,7 @@ const Footer = () => {
                   alt="Red Sun Capital, LLC" 
                   className="h-16 brightness-0 invert" 
                 />
-                <div className="absolute top-0 left-0 w-10 h-10 bg-heritage-600 mix-blend-multiply rounded-full"></div>
+                <div className="absolute top-0 left-0 w-10 h-10 bg-heritage-600 rounded-full" style={{ mixBlendMode: 'screen' }}></div>
               </div>
             </div>
             <p className="text-gray-400 mb-6">
