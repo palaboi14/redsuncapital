@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -10,7 +11,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/390801ef-25e9-4d8f-95ee-f145ed45a723.png" 
                 alt="Red Sun Capital, LLC" 
-                className="h-16 brightness-0 invert" 
+                className="h-16" 
               />
             </div>
             <p className="text-gray-400 mb-6">
@@ -72,10 +73,10 @@ const Footer = () => {
               Kapolei, HI 96707
             </p>
             <a 
-              href="mailto:info@redsuncapital.com" 
+              href="mailto:go@redsuncapital.com" 
               className="text-gray-400 hover:text-white transition-colors"
             >
-              info@redsuncapital.com
+              go@redsuncapital.com
             </a>
           </div>
         </div>

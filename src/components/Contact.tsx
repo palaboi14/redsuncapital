@@ -48,7 +48,7 @@ const Contact = () => {
             CONNECT WITH US
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            To learn more about Heritage Wealth and our lending solutions, please complete the form below. 
+            To learn more about Red Sun Capital and our lending solutions, please complete the form below. 
             For loan inquiries, click Get Started.
           </p>
         </div>
@@ -138,7 +138,7 @@ const Contact = () => {
           <div className="flex flex-col justify-center">
             <div className="mb-8">
               <h3 className="font-bold text-2xl mb-6 text-heritage-600">
-                heritage wealth holdings
+                Red Sun Capital
               </h3>
               
               <div className="flex items-start mb-4">
@@ -146,10 +146,10 @@ const Contact = () => {
                 <div>
                   <p className="font-medium">Email:</p>
                   <a 
-                    href="mailto:info@heritagewealthholdings.com" 
+                    href="mailto:go@redsuncapital.com" 
                     className="text-gray-600 hover:text-heritage-500 transition-colors"
                   >
-                    info@heritagewealthholdings.com
+                    go@redsuncapital.com
                   </a>
                 </div>
               </div>

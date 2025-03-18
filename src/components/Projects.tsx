@@ -9,28 +9,28 @@ import {
 
 const projectImages = [
   {
-    src: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
-    alt: "Real estate project completion 1"
+    src: "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
+    alt: "Fix and Flip project - White concrete building renovation"
   },
   {
-    src: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-    alt: "Real estate project completion 2"
+    src: "https://images.unsplash.com/photo-1518005020951-eccb494ad742",
+    alt: "Multi-family renovation project - White building during daytime"
   },
   {
-    src: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-    alt: "Real estate project completion 3"
+    src: "https://images.unsplash.com/photo-1496307653780-42ee777d4833",
+    alt: "Commercial property construction - Modern glass building"
   },
   {
-    src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-    alt: "Real estate project completion 4"
+    src: "https://images.unsplash.com/photo-1431576901776-e539bd916ba2",
+    alt: "New construction project - Contemporary multi-story building"
   },
   {
-    src: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-    alt: "Real estate project completion 5"
+    src: "https://images.unsplash.com/photo-1449157291145-7efd050a4d0e",
+    alt: "Row houses rental portfolio - Urban residential properties"
   },
   {
-    src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
-    alt: "Real estate project completion 6"
+    src: "https://images.unsplash.com/photo-1459767129954-1b1c1f9b9ace",
+    alt: "Residential rehab project - White concrete building"
   }
 ];
 

@@ -47,7 +47,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/390801ef-25e9-4d8f-95ee-f145ed45a723.png" 
               alt="Red Sun Capital, LLC" 
-              className="h-16 md:h-20" 
+              className="h-20 md:h-24" 
             />
           </Link>
 
