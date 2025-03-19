@@ -70,7 +70,7 @@ const Projects = () => {
               {projectImages.map((image, index) => (
                 <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
                   <div className="p-1">
-                    <HoverCard>
+                    <HoverCard openDelay={0} closeDelay={100}>
                       <HoverCardTrigger asChild>
                         <div className="overflow-hidden rounded-xl shadow-md cursor-pointer">
                           <img 
@@ -80,7 +80,7 @@ const Projects = () => {
                           />
                         </div>
                       </HoverCardTrigger>
-                      <HoverCardContent className="w-80 p-4 bg-white/90 backdrop-blur-sm border border-gray-200">
+                      <HoverCardContent side="top" align="center" className="w-80 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 shadow-md z-[100]">
                         <div className="space-y-2">
                           <h4 className="text-sm font-semibold text-heritage-600">{image.alt.split(' - ')[0]}</h4>
                           <p className="text-sm text-gray-700">{image.description}</p>

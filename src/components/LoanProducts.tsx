@@ -1,4 +1,4 @@
-import { Home, Building, LineChart, Briefcase, ChevronDown, HelpCircle, RefreshCw, FileText } from 'lucide-react';
+import { Home, Building, LineChart, Briefcase, ChevronDown, HelpCircle, RefreshCw, FileText, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import {
@@ -41,6 +41,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 
 interface LoanProductProps {
@@ -54,6 +55,75 @@ interface LoanProductProps {
   longDescription: string;
   documentRequirements: string[];
 }
+
+const ContactFormDialog = () => {
+  return (
+    <Dialog>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="text-heritage-600">Get Started</DialogTitle>
+          <DialogDescription>
+            Fill out the form below and we'll get back to you shortly.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="py-4">
+          <form className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-heritage-500 focus:border-heritage-500"
+                placeholder="Your name"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-heritage-500 focus:border-heritage-500"
+                placeholder="you@example.com"
+              />
+            </div>
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                Phone
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-heritage-500 focus:border-heritage-500"
+                placeholder="(555) 555-5555"
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                Message
+              </label>
+              <textarea
+                id="message"
+                rows={3}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-heritage-500 focus:border-heritage-500"
+                placeholder="Tell us about your project"
+              ></textarea>
+            </div>
+            <div className="flex justify-end">
+              <Button className="bg-heritage-500 hover:bg-heritage-600">
+                Submit
+                <ArrowRight className="ml-2" size={18} />
+              </Button>
+            </div>
+          </form>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 const DocumentRequirementsDialog = ({ 
   title, 
@@ -85,8 +155,30 @@ const DocumentRequirementsDialog = ({
               <li key={index} className="text-gray-700">{requirement}</li>
             ))}
           </ul>
+          <div className="mt-6 flex justify-end">
+            <DialogClose asChild>
+              <Button 
+                variant="outline" 
+                className="mr-2"
+              >
+                Close
+              </Button>
+            </DialogClose>
+            <DialogTrigger asChild>
+              <Button 
+                className="bg-heritage-500 hover:bg-heritage-600 text-white"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                Get Started
+                <ArrowRight className="ml-2" size={16} />
+              </Button>
+            </DialogTrigger>
+          </div>
         </div>
       </DialogContent>
+      <ContactFormDialog />
     </Dialog>
   );
 };

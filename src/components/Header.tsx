@@ -86,6 +86,15 @@ const Header = () => {
         "fixed inset-0 bg-white z-30 transition-transform duration-300 ease-in-out transform md:hidden pt-20",
         isMenuOpen ? "translate-x-0" : "translate-x-full"
       )}>
+        <div className="absolute top-5 right-5">
+          <button 
+            className="p-2 text-gray-700 hover:text-heritage-600 focus:outline-none"
+            onClick={toggleMenu}
+            aria-label="Close menu"
+          >
+            <X size={24} />
+          </button>
+        </div>
         <nav className="container mx-auto px-4 py-6 flex flex-col space-y-4">
           {navLinks.map((link) => (
             <Link 
