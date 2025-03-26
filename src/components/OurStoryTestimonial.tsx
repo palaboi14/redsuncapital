@@ -36,15 +36,15 @@ const OurStoryTestimonial = () => {
   };
   
   return (
-    <section className="py-16 md:py-24 bg-amber-50">
+    <section className="py-16 md:py-24 bg-gradient-to-r from-heritage-50 to-white">
       <div className="container mx-auto px-4 md:px-6">
         <div className="relative max-w-4xl mx-auto">
           <button 
             onClick={previousTestimonial} 
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white p-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white p-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:bg-heritage-50"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={24} className="text-heritage-600" />
           </button>
           
           <div className="text-center px-10 md:px-16">
@@ -58,10 +58,10 @@ const OurStoryTestimonial = () => {
           
           <button 
             onClick={nextTestimonial} 
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white p-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white p-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:bg-heritage-50"
             aria-label="Next testimonial"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={24} className="text-heritage-600" />
           </button>
         </div>
       </div>

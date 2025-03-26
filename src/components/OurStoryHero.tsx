@@ -9,11 +9,14 @@ const OurStoryHero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
         style={{ 
-          backgroundImage: "url('/lovable-uploads/846241cd-64dd-42cb-87d6-477db0e379c3.png')", 
+          backgroundImage: "url('https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')", 
           backgroundPosition: "center 30%",
-          filter: "brightness(0.6)"
+          filter: "brightness(0.7)"
         }}
       />
+      
+      {/* Subtle Red Overlay */}
+      <div className="absolute inset-0 bg-heritage-500/10 z-1"></div>
       
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-white">
