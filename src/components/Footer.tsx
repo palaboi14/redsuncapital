@@ -1,22 +1,13 @@
-
 import { Link } from 'react-router-dom';
-
 const Footer = () => {
-  return (
-    <footer className="bg-gradient-to-b from-heritage-800 to-heritage-900 text-white pt-16 pb-8">
+  return <footer className="bg-gradient-to-b from-heritage-800 to-heritage-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-full md:col-span-1">
-            <div className="mb-4">
-              <img 
-                alt="Red Sun Capital, LLC" 
-                className="h-20" 
-                src="/lovable-uploads/853816ae-fa88-43e7-af47-3bf08cd90a75.png" 
-              />
+            <div className="mb-4 px-[82px]">
+              <img alt="Red Sun Capital, LLC" className="h-20" src="/lovable-uploads/853816ae-fa88-43e7-af47-3bf08cd90a75.png" />
             </div>
-            <p className="text-gray-300 mb-6">
-              Providing innovative funding solutions for real estate investors.
-            </p>
+            <p className="text-gray-300 mb-6 font-thin text-xs text-justify">Red Sun Capital, LLC is a wholly-owned subsidiary of Heritage Wealth Holdings, LLC.</p>
           </div>
           
           <div>
@@ -94,8 +85,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
