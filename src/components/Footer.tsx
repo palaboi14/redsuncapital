@@ -1,20 +1,15 @@
-
 import { Link } from 'react-router-dom';
-
 const Footer = () => {
-  return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8">
+  return <footer className="bg-gray-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-full md:col-span-1">
             <div className="mb-4">
               <div className="relative inline-block">
-                <img 
-                  src="/lovable-uploads/390801ef-25e9-4d8f-95ee-f145ed45a723.png" 
-                  alt="Red Sun Capital, LLC" 
-                  className="h-16 brightness-0 invert" 
-                />
-                <div className="absolute top-0 left-0 w-10 h-10 bg-heritage-600 rounded-full" style={{ mixBlendMode: 'screen' }}></div>
+                <img alt="Red Sun Capital, LLC" className="h-16 brightness-0 invert" src="/lovable-uploads/b6a804fd-2671-42a2-9ba2-cda7da5214e8.png" />
+                <div className="absolute top-0 left-0 w-10 h-10 bg-heritage-600 rounded-full" style={{
+                mixBlendMode: 'screen'
+              }}></div>
               </div>
             </div>
             <p className="text-gray-400 mb-6">
@@ -75,10 +70,7 @@ const Footer = () => {
               91-270 Hanua St Suite 1A,<br />
               Kapolei, HI 96707
             </p>
-            <a 
-              href="mailto:go@redsuncapital.com" 
-              className="text-gray-400 hover:text-white transition-colors"
-            >
+            <a href="mailto:go@redsuncapital.com" className="text-gray-400 hover:text-white transition-colors">
               go@redsuncapital.com
             </a>
           </div>
@@ -100,8 +92,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
