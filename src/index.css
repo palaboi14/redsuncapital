@@ -138,4 +138,8 @@
   .text-gradient {
     @apply bg-gradient-to-r from-heritage-600 to-heritage-500 bg-clip-text text-transparent;
   }
+  
+  .red-gradient {
+    @apply bg-gradient-to-b from-heritage-700 to-heritage-900;
+  }
 }
