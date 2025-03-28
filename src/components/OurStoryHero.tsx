@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 
 const OurStoryHero = () => {
   return <section className="relative h-[500px] flex items-center overflow-hidden">
-      {/* Background Image - Hawaii related */}
+      {/* Background Image - Hawaii mortgage related */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0" style={{
-      backgroundImage: "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
+      backgroundImage: "url('/lovable-uploads/602e915c-ab16-4d54-b501-78105eb3acc0.png')",
       backgroundPosition: "center",
-      filter: "brightness(0.85)"
+      filter: "brightness(0.95)"
     }} />
       
-      {/* Subtle Red Overlay */}
-      <div className="absolute inset-0 bg-heritage-500/10 z-1"></div>
+      {/* Semi-transparent overlay to improve text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent z-1"></div>
       
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-white">
