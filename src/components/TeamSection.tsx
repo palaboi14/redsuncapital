@@ -63,22 +63,22 @@ const CircleDataPoint = ({
 }: { 
   label: string; 
   value: string | string[]; 
-  position: 'top-left' | 'top-right' | 'bottom-left' 
+  position: 'top-left' | 'top-right' | 'left-center' 
 }) => {
   const positionClasses = {
-    'top-left': '-top-16 -left-16',
-    'top-right': '-top-8 -right-8',
-    'bottom-left': 'top-48 -left-24',
+    'top-left': '-top-20 -left-28',
+    'top-right': '-top-16 -right-28',
+    'left-center': 'top-24 -left-32',
   };
 
   return (
     <div className={`absolute ${positionClasses[position]} transition-all duration-300 group-hover:scale-110`}>
-      <div className="w-20 h-20 bg-heritage-100 rounded-full flex flex-col items-center justify-center text-center shadow-md hover:shadow-lg transition-all duration-300 hover:bg-heritage-200 cursor-pointer">
-        <div className="font-bold text-xs text-heritage-800">{label}</div>
+      <div className="w-24 h-24 bg-blue-500 text-white rounded-full flex flex-col items-center justify-center text-center shadow-md hover:shadow-lg transition-all duration-300 hover:bg-blue-600 cursor-pointer">
+        <div className="font-bold text-sm">{label}</div>
         {typeof value === 'string' ? (
-          <div className="text-xs text-heritage-600">{value}</div>
+          <div className="text-xs">{value}</div>
         ) : (
-          <div className="text-[8px] text-heritage-600 px-1">
+          <div className="text-[9px] px-1">
             {value.join(' | ')}
           </div>
         )}
@@ -124,14 +124,14 @@ const TeamSection = () => {
                   </AvatarFallback>
                 </Avatar>
                 
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-heritage-500/0 to-heritage-500/50 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                {/* Hover overlay - blue tint like in reference image */}
+                <div className="absolute inset-0 bg-blue-500/40 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
               </div>
 
-              {/* Data points with diagonal alignment */}
+              {/* Data points arranged like the reference image */}
               <CircleDataPoint label="Experience" value={currentMember.experience} position="top-left" />
               <CircleDataPoint label="Total Deals" value={currentMember.deals} position="top-right" />
-              <CircleDataPoint label="Expertise" value={currentMember.expertise} position="bottom-left" />
+              <CircleDataPoint label="Expertise" value={currentMember.expertise} position="left-center" />
 
               {/* Name and title */}
               <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 text-center w-full">
@@ -153,7 +153,7 @@ const TeamSection = () => {
                     <Button 
                       variant="outline" 
                       size="sm" 
-                      className="gap-2 text-heritage-500 border-heritage-200 hover:bg-heritage-50"
+                      className="gap-2 text-blue-500 border-blue-200 hover:bg-blue-50"
                       onClick={() => window.open(currentMember.linkedin, '_blank')}
                     >
                       <Linkedin size={16} />
@@ -170,7 +170,7 @@ const TeamSection = () => {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="h-12 w-12 rounded-full border border-gray-200 hover:bg-heritage-50 hover:text-heritage-500"
+              className="h-12 w-12 rounded-full border border-gray-200 hover:bg-blue-50 hover:text-blue-500"
               onClick={handlePrev}
             >
               <ChevronLeft size={24} />
@@ -184,7 +184,7 @@ const TeamSection = () => {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="h-12 w-12 rounded-full border border-gray-200 hover:bg-heritage-50 hover:text-heritage-500"
+              className="h-12 w-12 rounded-full border border-gray-200 hover:bg-blue-50 hover:text-blue-500"
               onClick={handleNext}
             >
               <ChevronRight size={24} />
