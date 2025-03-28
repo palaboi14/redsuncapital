@@ -1,4 +1,3 @@
-
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
@@ -24,9 +23,6 @@ const LoanProductsHero = () => {
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-white">
         <div className="max-w-3xl">
-          <div className="mb-4 text-heritage-100">
-            <span className="uppercase tracking-wider text-sm font-medium">FINANCING SOLUTIONS</span>
-          </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Explore Our Loan Product Suite
           </h1>
