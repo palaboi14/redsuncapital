@@ -9,7 +9,7 @@ const OurStoryHero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
         style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')", 
+          backgroundImage: "url('https://images.unsplash.com/photo-1452378174528-3090a4bba7b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')", 
           backgroundPosition: "center 30%",
           filter: "brightness(0.7)"
         }}
@@ -21,9 +21,6 @@ const OurStoryHero = () => {
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-white">
         <div className="max-w-3xl">
-          <div className="mb-4 text-heritage-100">
-            <span className="uppercase tracking-wider text-sm font-medium">ABOUT US</span>
-          </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             We've been at this for a while.<br />
             And make loans happen.
