@@ -3,7 +3,7 @@ import MainLayout from '@/layouts/MainLayout';
 import OurStoryHero from '@/components/OurStoryHero';
 import OurStoryContent from '@/components/OurStoryContent';
 import OurStoryTestimonial from '@/components/OurStoryTestimonial';
-import Contact from '@/components/Contact';
+import TeamSection from '@/components/TeamSection';
 
 const OurStory = () => {
   return (
@@ -11,7 +11,7 @@ const OurStory = () => {
       <OurStoryHero />
       <OurStoryContent />
       <OurStoryTestimonial />
-      <Contact />
+      <TeamSection />
     </MainLayout>
   );
 };
