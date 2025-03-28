@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Linkedin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -66,9 +65,9 @@ const CircleDataPoint = ({
   position: 'top-left' | 'middle-left' | 'bottom-left' 
 }) => {
   const positionClasses = {
-    'top-left': '-top-8 -left-20',
-    'middle-left': 'top-1/4 -left-20',
-    'bottom-left': 'top-1/2 -left-20',
+    'top-left': 'top-0 -translate-y-1/4 -left-16',
+    'middle-left': 'top-1/2 -translate-y-1/2 -left-16',
+    'bottom-left': 'bottom-0 translate-y-1/4 -left-16',
   };
 
   return (
