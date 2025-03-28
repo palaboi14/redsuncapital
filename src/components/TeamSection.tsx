@@ -133,8 +133,8 @@ const TeamSection = () => {
               <CircleDataPoint label="Total Deals" value={currentMember.deals} position="middle-left" />
               <CircleDataPoint label="Expertise" value={currentMember.expertise} position="bottom-left" />
 
-              {/* Name and title */}
-              <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 text-center w-full">
+              {/* Name and title - updated with smaller margin (20px) */}
+              <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 text-center w-full">
                 <h3 className="text-2xl font-bold text-gray-900">{currentMember.name}</h3>
                 <p className="text-heritage-600">{currentMember.title}</p>
               </div>
