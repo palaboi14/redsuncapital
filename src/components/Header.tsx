@@ -1,17 +1,13 @@
-
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10;
@@ -19,13 +15,11 @@ const Header = () => {
         setScrolled(isScrolled);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [scrolled]);
-
   const navLinks = [{
     name: 'Home',
     path: '/'
@@ -42,9 +36,7 @@ const Header = () => {
     name: 'Contact',
     path: '/contact'
   }];
-
-  return <header className={cn("fixed top-0 left-0 right-0 z-40 transition-all duration-300", 
-    scrolled ? "bg-white/90 backdrop-blur-lg shadow-sm py-3" : "bg-transparent py-5")}>
+  return <header className={cn("fixed top-0 left-0 right-0 z-40 transition-all duration-300", scrolled ? "bg-white/90 backdrop-blur-lg shadow-sm py-3" : "bg-transparent py-5")}>
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between my-0 py-0">
           <Link to="/" className="flex items-center">
@@ -53,8 +45,7 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map(link => <Link key={link.name} to={link.path} className={cn("nav-link", 
-              !scrolled && "text-white hover:text-white/80 after:bg-white")}>
+            {navLinks.map(link => <Link key={link.name} to={link.path} className="nav-link">
                 {link.name}
               </Link>)}
             <Link to="/get-funded" className="btn-primary">
@@ -63,9 +54,7 @@ const Header = () => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button className={cn("md:hidden focus:outline-none", 
-            scrolled ? "text-gray-700" : "text-white")} 
-            onClick={toggleMenu} aria-label="Toggle menu">
+          <button className="md:hidden text-gray-700 focus:outline-none" onClick={toggleMenu} aria-label="Toggle menu">
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -89,5 +78,4 @@ const Header = () => {
       </div>
     </header>;
 };
-
 export default Header;

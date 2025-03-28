@@ -1,7 +1,5 @@
-
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
 const OurStoryHero = () => {
   return <section className="relative h-[500px] flex items-center overflow-hidden">
       {/* Background Image - Hawaii mortgage related */}
@@ -17,7 +15,7 @@ const OurStoryHero = () => {
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-white">
         <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 py-[9px] lg:text-6xl my-[25px]">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 py-[9px] lg:text-6xl my-[30px]">
             We've been at this for a while.<br />
             And make loans happen.
           </h1>
@@ -33,5 +31,4 @@ const OurStoryHero = () => {
       </div>
     </section>;
 };
-
 export default OurStoryHero;
