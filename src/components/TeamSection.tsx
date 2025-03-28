@@ -63,12 +63,12 @@ const CircleDataPoint = ({
 }: { 
   label: string; 
   value: string | string[]; 
-  position: 'top' | 'left' | 'right' 
+  position: 'top-left' | 'top-right' | 'bottom-left' 
 }) => {
   const positionClasses = {
-    top: '-top-24 left-1/2 -translate-x-1/2',
-    left: 'top-1/2 -left-24 -translate-y-1/2',
-    right: 'top-1/2 -right-24 -translate-y-1/2',
+    'top-left': '-top-16 -left-16',
+    'top-right': '-top-8 -right-8',
+    'bottom-left': 'top-48 -left-24',
   };
 
   return (
@@ -128,10 +128,10 @@ const TeamSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-heritage-500/0 to-heritage-500/50 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
               </div>
 
-              {/* Data points */}
-              <CircleDataPoint label="Experience" value={currentMember.experience} position="top" />
-              <CircleDataPoint label="Total Deals" value={currentMember.deals} position="left" />
-              <CircleDataPoint label="Expertise" value={currentMember.expertise} position="right" />
+              {/* Data points with diagonal alignment */}
+              <CircleDataPoint label="Experience" value={currentMember.experience} position="top-left" />
+              <CircleDataPoint label="Total Deals" value={currentMember.deals} position="top-right" />
+              <CircleDataPoint label="Expertise" value={currentMember.expertise} position="bottom-left" />
 
               {/* Name and title */}
               <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 text-center w-full">
