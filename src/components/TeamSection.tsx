@@ -18,7 +18,7 @@ interface TeamMember {
   linkedin?: string;
 }
 
-// Sample team data
+// Sample team data - removed Tison Young
 const teamMembers: TeamMember[] = [
   {
     id: 1,
@@ -40,17 +40,6 @@ const teamMembers: TeamMember[] = [
     experience: '12+ Years',
     deals: '$275M+ Closed',
     expertise: ['Multi-Family', 'Mixed-Use', 'Office', 'Retail'],
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    id: 3,
-    name: 'Tison Young',
-    title: 'Director of Operations',
-    image: '/placeholder.svg',
-    bio: 'Tison oversees our operational processes and technology integration. His background in fintech and real estate has allowed him to streamline our loan origination process, resulting in faster approvals and enhanced client satisfaction. He leads our continuous improvement initiatives.',
-    experience: '10+ Years',
-    deals: '$220M+ Closed',
-    expertise: ['Process Optimization', 'Technology', 'Client Experience'],
     linkedin: 'https://linkedin.com',
   },
 ];
@@ -104,7 +93,7 @@ const TeamSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            OUR TEAM
+            THE FOUNDERS
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Meet the dedicated professionals behind Red Sun Capital's success. Our experienced team is committed to providing exceptional service and innovative financing solutions.
