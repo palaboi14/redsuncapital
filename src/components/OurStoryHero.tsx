@@ -1,22 +1,16 @@
-
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
 const OurStoryHero = () => {
-  return (
-    <section className="relative h-[600px] flex items-center overflow-hidden">
+  return <section className="relative h-[600px] flex items-center overflow-hidden">
       {/* Background Image - Red Sun Capital Team */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0" 
-        style={{
-          backgroundImage: "url('/lovable-uploads/bb47f1a3-7a96-4d67-97f5-a4aafa635fc4.png')",
-          backgroundPosition: "center",
-          filter: "brightness(0.85)"
-        }} 
-      />
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0" style={{
+      backgroundImage: "url('/lovable-uploads/bb47f1a3-7a96-4d67-97f5-a4aafa635fc4.png')",
+      backgroundPosition: "center",
+      filter: "brightness(0.85)"
+    }} />
       
       {/* Semi-transparent overlay to improve text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 z-1"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 z-1 bg-orange-100"></div>
       
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-white">
@@ -35,8 +29,6 @@ const OurStoryHero = () => {
           </Link>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default OurStoryHero;
