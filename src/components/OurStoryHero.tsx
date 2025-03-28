@@ -15,7 +15,7 @@ const OurStoryHero = () => {
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-white">
         <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 py-[9px] lg:text-6xl my-[30px]">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 py-[9px] lg:text-6xl my-[13px]">
             We've been at this for a while.<br />
             And make loans happen.
           </h1>
@@ -23,7 +23,7 @@ const OurStoryHero = () => {
             Serving real estate investors nationwide, Red Sun Capital sets itself apart 
             with excellent relationship-driven service.
           </p>
-          <Link to="/get-funded" className="inline-flex items-center btn-primary group">
+          <Link to="/get-funded" className="inline-flex items-center btn-primary group my-[15px] py-[9px] px-[12px] mx-0">
             <span>GET FUNDED</span>
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
           </Link>
