@@ -72,8 +72,8 @@ const CircleDataPoint = ({
   };
 
   return (
-    <div className={`absolute ${positionClasses[position]} transition-all duration-300 group-hover:scale-110`}>
-      <div className="w-24 h-24 bg-blue-500 text-white rounded-full flex flex-col items-center justify-center text-center shadow-md hover:shadow-lg transition-all duration-300 hover:bg-blue-600 cursor-pointer">
+    <div className={`absolute ${positionClasses[position]} transition-all duration-300`}>
+      <div className="w-24 h-24 bg-blue-500 text-white rounded-full flex flex-col items-center justify-center text-center shadow-md hover:shadow-lg transition-all duration-300 hover:bg-blue-600 hover:scale-110 cursor-pointer">
         <div className="font-bold text-sm">{label}</div>
         {typeof value === 'string' ? (
           <div className="text-xs">{value}</div>
@@ -114,7 +114,7 @@ const TeamSection = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             {/* Left side - Profile image and data points */}
-            <div className="relative flex justify-center group">
+            <div className="relative flex justify-center">
               {/* Main profile circle */}
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-heritage-100 shadow-lg transition-all duration-300 hover:shadow-xl">
                 <Avatar className="w-full h-full">
