@@ -6,9 +6,9 @@ const OurStoryHero = () => {
   return <section className="relative h-[500px] flex items-center overflow-hidden">
       {/* Background Image - Hawaii related */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0" style={{
-      backgroundImage: "url('https://images.unsplash.com/photo-1545251142-f32339076e6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
+      backgroundImage: "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
       backgroundPosition: "center",
-      filter: "brightness(0.7)"
+      filter: "brightness(0.85)"
     }} />
       
       {/* Subtle Red Overlay */}
