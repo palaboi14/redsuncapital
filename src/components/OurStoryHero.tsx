@@ -9,9 +9,9 @@ const OurStoryHero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0" 
         style={{
-          backgroundImage: "url('/lovable-uploads/4c1c0f44-9261-44b1-9232-df4e082cdb96.png')",
+          backgroundImage: "url('/lovable-uploads/bb47f1a3-7a96-4d67-97f5-a4aafa635fc4.png')",
           backgroundPosition: "center",
-          filter: "brightness(0.8)"
+          filter: "brightness(0.85)"
         }} 
       />
       
