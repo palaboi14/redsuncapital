@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Linkedin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -21,10 +22,10 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: 'John Smith',
+    name: 'Aidan Wong',
     title: 'Managing Partner',
     image: '/lovable-uploads/c73ac345-fb90-40f8-8ccd-21523ddaca14.png',
-    bio: 'John brings over 15 years of experience in commercial real estate financing. He specializes in structuring complex deals and has a background in investment banking. His strategic approach has helped clients navigate challenging market conditions and secure optimal financing solutions for their investments.',
+    bio: 'Aidan brings over 15 years of experience in commercial real estate financing. He specializes in structuring complex deals and has a background in investment banking. His strategic approach has helped clients navigate challenging market conditions and secure optimal financing solutions for their investments.',
     experience: '15+ Years',
     deals: '$350M+ Closed',
     expertise: ['Fix & Flip', 'DSCR', 'Construction', 'Portfolio Loans'],
@@ -32,10 +33,10 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 2,
-    name: 'Sarah Johnson',
+    name: 'Adrian Posoz',
     title: 'Senior Loan Advisor',
     image: '/placeholder.svg',
-    bio: 'Sarah has been with Red Sun Capital for 8 years, focusing primarily on commercial property acquisitions and refinancing. Her attention to detail and deep understanding of underwriting processes makes her an invaluable asset to clients seeking competitive loan terms and expedited closings.',
+    bio: 'Adrian has been with Red Sun Capital for 8 years, focusing primarily on commercial property acquisitions and refinancing. His attention to detail and deep understanding of underwriting processes makes him an invaluable asset to clients seeking competitive loan terms and expedited closings.',
     experience: '12+ Years',
     deals: '$275M+ Closed',
     expertise: ['Multi-Family', 'Mixed-Use', 'Office', 'Retail'],
@@ -43,10 +44,10 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 3,
-    name: 'Michael Chen',
+    name: 'Tison Young',
     title: 'Director of Operations',
     image: '/placeholder.svg',
-    bio: 'Michael oversees our operational processes and technology integration. His background in fintech and real estate has allowed him to streamline our loan origination process, resulting in faster approvals and enhanced client satisfaction. He leads our continuous improvement initiatives.',
+    bio: 'Tison oversees our operational processes and technology integration. His background in fintech and real estate has allowed him to streamline our loan origination process, resulting in faster approvals and enhanced client satisfaction. He leads our continuous improvement initiatives.',
     experience: '10+ Years',
     deals: '$220M+ Closed',
     expertise: ['Process Optimization', 'Technology', 'Client Experience'],
@@ -65,9 +66,9 @@ const CircleDataPoint = ({
   position: 'top-left' | 'middle-left' | 'bottom-left' 
 }) => {
   const positionClasses = {
-    'top-left': 'top-0 -translate-y-1/4 -left-16',
-    'middle-left': 'top-1/2 -translate-y-1/2 -left-16',
-    'bottom-left': 'bottom-0 translate-y-1/4 -left-16',
+    'top-left': 'top-0 -translate-y-1/4 -left-12',
+    'middle-left': 'top-1/2 -translate-y-1/2 -left-12',
+    'bottom-left': 'bottom-0 translate-y-1/4 -left-12',
   };
 
   return (
