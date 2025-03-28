@@ -1,7 +1,5 @@
-
 const OurStoryContent = () => {
-  return (
-    <section className="py-16 md:py-24 bg-white">
+  return <section className="py-16 bg-white md:py-[94px]">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
@@ -28,11 +26,7 @@ const OurStoryContent = () => {
           
           <div className="relative">
             <div className="rounded-lg overflow-hidden shadow-xl">
-              <img 
-                src="https://images.unsplash.com/photo-1579389083395-4507e98b5e67?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                alt="Red Sun Capital Team" 
-                className="w-full h-auto object-cover"
-              />
+              <img src="https://images.unsplash.com/photo-1579389083395-4507e98b5e67?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Red Sun Capital Team" className="w-full h-auto object-cover" />
             </div>
             <div className="absolute -bottom-5 -left-5 w-24 h-24 bg-heritage-500/80 rounded-lg z-0 hidden md:block"></div>
           </div>
@@ -41,11 +35,7 @@ const OurStoryContent = () => {
         <div className="mt-24 grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1 relative">
             <div className="rounded-lg overflow-hidden shadow-xl">
-              <img 
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                alt="Red Sun Capital Office" 
-                className="w-full h-auto object-cover"
-              />
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Red Sun Capital Office" className="w-full h-auto object-cover" />
             </div>
             <div className="absolute -top-5 -right-5 w-24 h-24 bg-heritage-500/80 rounded-lg z-0 hidden md:block"></div>
           </div>
@@ -70,8 +60,6 @@ const OurStoryContent = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default OurStoryContent;
