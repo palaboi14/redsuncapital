@@ -1,11 +1,13 @@
+
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
 const OurStoryHero = () => {
   return <section className="relative h-[500px] flex items-center overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image - Hawaii related */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0" style={{
-      backgroundImage: "url('https://images.unsplash.com/photo-1452378174528-3090a4bba7b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
-      backgroundPosition: "center 30%",
+      backgroundImage: "url('https://images.unsplash.com/photo-1545251142-f32339076e6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
+      backgroundPosition: "center",
       filter: "brightness(0.7)"
     }} />
       
@@ -31,4 +33,5 @@ const OurStoryHero = () => {
       </div>
     </section>;
 };
+
 export default OurStoryHero;
