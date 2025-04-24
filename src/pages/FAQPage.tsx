@@ -9,7 +9,9 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import MainLayout from '@/layouts/MainLayout';
+import AnimatedGradient from '@/components/AnimatedGradient';
 
 // FAQ data
 const faqItems = [
@@ -95,15 +97,17 @@ const AdditionalQuestions = () => {
   const [dealStatus, setDealStatus] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [question, setQuestion] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
-    console.log({ dealStatus, name, email });
+    console.log({ dealStatus, name, email, question });
     // Reset form
     setDealStatus('');
     setName('');
     setEmail('');
+    setQuestion('');
     // Show success message
     alert('Thank you for your inquiry. We will get back to you soon.');
   };
@@ -164,6 +168,22 @@ const AdditionalQuestions = () => {
               />
             </div>
             
+            {/* Add multiline textarea for questions */}
+            <div className="space-y-2">
+              <label htmlFor="question" className="block text-sm font-medium text-gray-700">
+                Your Question
+              </label>
+              <Textarea 
+                id="question" 
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+                placeholder="Please describe your question in detail..."
+                className="min-h-[120px]" // Set minimum height for 5+ lines
+                rows={5}
+                required
+              />
+            </div>
+            
             <Button 
               type="submit" 
               className="w-full bg-heritage-500 hover:bg-heritage-600 text-white"
@@ -181,6 +201,13 @@ const AdditionalQuestions = () => {
 const FAQPage = () => {
   return (
     <MainLayout>
+      {/* Add larger, more dynamic gradient in top-left */}
+      <AnimatedGradient 
+        size="2xl" 
+        animation="flow" 
+        intensity="medium" 
+        className="top-0 left-0 -translate-x-1/4 -translate-y-1/4" 
+      />
       <FAQHero />
       <FAQAccordion />
       <AdditionalQuestions />

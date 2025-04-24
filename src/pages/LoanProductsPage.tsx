@@ -1,8 +1,11 @@
+
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
 import LoanProducts from '@/components/LoanProducts';
 import { Button } from '@/components/ui/button';
+import EmbeddedForm from '@/components/EmbeddedForm';
+import AnimatedGradient from '@/components/AnimatedGradient';
 
 const LoanProductsHero = () => {
   return (
@@ -62,51 +65,8 @@ const ContactSection = () => {
             Have questions about our loan products? We're here to help.
           </p>
           
-          <form className="space-y-6">
-            <div>
-              <label htmlFor="loanStatus" className="block text-sm font-medium text-gray-700 mb-1">
-                Are you currently seeking a loan?
-              </label>
-              <select 
-                id="loanStatus" 
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-heritage-500 focus:border-heritage-500"
-              >
-                <option value="">Please select</option>
-                <option value="yes">Yes, I'm looking for financing now</option>
-                <option value="soon">Not yet, but I will be soon</option>
-                <option value="exploring">Just exploring options</option>
-              </select>
-            </div>
-            
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                Your Name
-              </label>
-              <input 
-                type="text" 
-                id="name" 
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-heritage-500 focus:border-heritage-500"
-                placeholder="John Doe"
-              />
-            </div>
-            
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email Address
-              </label>
-              <input 
-                type="email" 
-                id="email" 
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-heritage-500 focus:border-heritage-500"
-                placeholder="you@example.com"
-              />
-            </div>
-            
-            <Button className="w-full bg-heritage-500 hover:bg-heritage-600 text-white">
-              Submit
-              <ArrowRight className="ml-2" size={18} />
-            </Button>
-          </form>
+          {/* Replace the form with the embedded form */}
+          <EmbeddedForm />
         </div>
       </div>
     </section>
@@ -116,6 +76,13 @@ const ContactSection = () => {
 const LoanProductsPage = () => {
   return (
     <MainLayout>
+      {/* Add larger, more dynamic gradient in top-left */}
+      <AnimatedGradient 
+        size="2xl" 
+        animation="flow" 
+        intensity="medium" 
+        className="top-0 left-0 -translate-x-1/4 -translate-y-1/4" 
+      />
       <LoanProductsHero />
       <LoanProducts />
       <ContactSection />

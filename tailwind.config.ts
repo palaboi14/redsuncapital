@@ -152,6 +152,36 @@ export default {
                         transform: 'scale(1)' 
                     },
                 },
+                'gradient-flow': {
+                    '0%': { 
+                        transform: 'rotate(0deg) scale(1)',
+                        opacity: '0.8'
+                    },
+                    '25%': {
+                        opacity: '0.9'
+                    },
+                    '50%': { 
+                        transform: 'rotate(180deg) scale(1.1)',
+                        opacity: '1'
+                    },
+                    '75%': {
+                        opacity: '0.9'
+                    },
+                    '100%': { 
+                        transform: 'rotate(360deg) scale(1)',
+                        opacity: '0.8'
+                    },
+                },
+                'breathe': {
+                    '0%, 100%': {
+                        transform: 'scale(1)',
+                        opacity: '0.8'
+                    },
+                    '50%': {
+                        transform: 'scale(1.2)',
+                        opacity: '1'
+                    },
+                },
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -165,6 +195,8 @@ export default {
                 'float': 'float 6s ease-in-out infinite',
                 'pulse-soft': 'pulse-soft 4s ease-in-out infinite',
                 'scale': 'scale 0.5s ease-out forwards',
+                'gradient-flow': 'gradient-flow 15s ease-in-out infinite',
+                'breathe': 'breathe 8s ease-in-out infinite',
 			},
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
