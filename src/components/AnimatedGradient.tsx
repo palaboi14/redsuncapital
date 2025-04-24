@@ -6,7 +6,7 @@ interface AnimatedGradientProps {
   className?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   intensity?: 'light' | 'medium' | 'strong';
-  animation?: 'pulse' | 'flow' | 'breathe';
+  animation?: 'pulse' | 'flow' | 'breathe' | 'sunray';
 }
 
 const AnimatedGradient: React.FC<AnimatedGradientProps> = ({
@@ -20,7 +20,7 @@ const AnimatedGradient: React.FC<AnimatedGradientProps> = ({
     md: 'w-64 h-64',
     lg: 'w-96 h-96',
     xl: 'w-[32rem] h-[32rem]',
-    '2xl': 'w-[48rem] h-[48rem]'
+    '2xl': 'w-[40rem] h-[40rem]'
   };
 
   const intensityClasses = {
@@ -32,13 +32,14 @@ const AnimatedGradient: React.FC<AnimatedGradientProps> = ({
   const animationClasses = {
     pulse: 'animate-pulse-soft',
     flow: 'animate-gradient-flow',
-    breathe: 'animate-breathe'
+    breathe: 'animate-breathe',
+    sunray: 'animate-sunray'
   };
 
   return (
     <div
       className={cn(
-        'rounded-full blur-[100px] absolute -z-10',
+        'rounded-full blur-[120px] absolute -z-10',
         sizeClasses[size],
         intensityClasses[intensity],
         animationClasses[animation],

@@ -1,6 +1,6 @@
-
 import { ArrowRight, Mail, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import EmbeddedForm from './EmbeddedForm';
 
 const Contact = () => {
   return (
@@ -18,11 +18,7 @@ const Contact = () => {
         
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div className="bg-white rounded-xl shadow-md p-8 border border-gray-100">
-            <iframe 
-              src="https://api.leadconnectorhq.com/widget/form/z6isUruw0iYxfHqTJOI1" 
-              style={{ width: '100%', height: '500px', border: 'none' }}
-              title="Contact Form"
-            />
+            <EmbeddedForm />
           </div>
           
           <div className="flex flex-col justify-center">

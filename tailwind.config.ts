@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -182,6 +181,28 @@ export default {
                         opacity: '1'
                     },
                 },
+                'sunray': {
+                    '0%': { 
+                        transform: 'rotate(0deg) scale(0.95)',
+                        opacity: '0.5',
+                        filter: 'blur(120px)'
+                    },
+                    '33%': {
+                        transform: 'rotate(120deg) scale(1.1)',
+                        opacity: '0.7',
+                        filter: 'blur(140px)'
+                    },
+                    '66%': {
+                        transform: 'rotate(240deg) scale(1)',
+                        opacity: '0.6',
+                        filter: 'blur(130px)'
+                    },
+                    '100%': { 
+                        transform: 'rotate(360deg) scale(0.95)',
+                        opacity: '0.5',
+                        filter: 'blur(120px)'
+                    },
+                },
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -197,6 +218,7 @@ export default {
                 'scale': 'scale 0.5s ease-out forwards',
                 'gradient-flow': 'gradient-flow 15s ease-in-out infinite',
                 'breathe': 'breathe 8s ease-in-out infinite',
+                'sunray': 'sunray 20s ease-in-out infinite',
 			},
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
