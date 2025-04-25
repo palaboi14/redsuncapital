@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface FundingDialogProps {
   className?: string;
@@ -17,7 +17,7 @@ interface FundingDialogProps {
 
 const FundingDialog = ({ className, buttonText = "GET MY FUNDING" }: FundingDialogProps) => {
   const navigate = useNavigate();
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
   
   const handleClick = () => {
     if (isMobile) {
