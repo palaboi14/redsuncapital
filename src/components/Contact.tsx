@@ -17,7 +17,7 @@ const Contact = () => {
         
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div className="bg-white rounded-xl shadow-md p-8 border border-gray-100">
-            <EmbeddedForm />
+            <EmbeddedForm formId="9m5t5VyR2hZDwq0NUnya" />
           </div>
           
           <div className="flex flex-col justify-center">

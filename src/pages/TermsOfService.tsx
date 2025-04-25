@@ -1,4 +1,3 @@
-
 import React from 'react';
 import MainLayout from '@/layouts/MainLayout';
 import { Separator } from '@/components/ui/separator';
@@ -23,7 +22,7 @@ const TermsOfService = () => {
             <section>
               <h2 className="text-2xl font-bold mb-4 text-heritage-600">1. Acceptance of Terms</h2>
               <p className="text-gray-700">
-                By accessing or using the Red Sun Capital, LLC website ("the Website"), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
+                By accessing or using the Red Sun Capital, LLC website ("https://www.redsuncapital.com") ("the Website"), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
               </p>
             </section>
 

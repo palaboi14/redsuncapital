@@ -1,4 +1,3 @@
-
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
@@ -6,6 +5,7 @@ import LoanProducts from '@/components/LoanProducts';
 import { Button } from '@/components/ui/button';
 import EmbeddedForm from '@/components/EmbeddedForm';
 import AnimatedGradient from '@/components/AnimatedGradient';
+import FundingDialog from '@/components/FundingDialog';
 
 const LoanProductsHero = () => {
   return (
@@ -33,12 +33,17 @@ const LoanProductsHero = () => {
             Customized financing solutions designed for real estate investors and developers.
           </p>
           <Link 
-            to="/get-funded" 
+            to="#" 
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('funding-dialog-trigger')?.click();
+            }}
             className="inline-flex items-center btn-primary group"
           >
             <span>SUBMIT DEAL SCENARIO</span>
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
           </Link>
+          <FundingDialog id="funding-dialog-trigger" className="hidden" />
         </div>
       </div>
     </section>

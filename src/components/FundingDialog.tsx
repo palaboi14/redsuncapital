@@ -13,9 +13,10 @@ import { useIsMobile } from "@/hooks/use-mobile";
 interface FundingDialogProps {
   className?: string;
   buttonText?: string;
+  id?: string;
 }
 
-const FundingDialog = ({ className, buttonText = "GET MY FUNDING" }: FundingDialogProps) => {
+const FundingDialog = ({ className, buttonText = "GET MY FUNDING", id }: FundingDialogProps) => {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   
@@ -28,13 +29,17 @@ const FundingDialog = ({ className, buttonText = "GET MY FUNDING" }: FundingDial
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className={className} onClick={handleClick}>
+        <Button id={id} className={className} onClick={handleClick}>
           {buttonText}
           <ArrowRight className="ml-2" size={18} />
         </Button>
       </DialogTrigger>
       {!isMobile && (
         <DialogContent className="w-full max-w-3xl max-h-[90vh] p-0 overflow-hidden">
+          <DialogTitle className="sr-only">Get Funded Form</DialogTitle>
+          <DialogDescription className="sr-only">
+            Fill out this form to get started with funding
+          </DialogDescription>
           <div className="w-full h-[90vh] overflow-auto">
             <iframe
               src="https://api.leadconnectorhq.com/widget/form/qTav4QsjvlzpIr4u06OK"

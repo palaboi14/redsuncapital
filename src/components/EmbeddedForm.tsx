@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const EmbeddedForm: React.FC = () => {
+const EmbeddedForm: React.FC<{ formId?: string }> = ({ formId = "iwN5fvztXH1ScqN2mx9h" }) => {
   React.useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://link.msgsndr.com/js/form_embed.js';
@@ -16,9 +16,9 @@ const EmbeddedForm: React.FC = () => {
   return (
     <div className="w-full">
       <iframe
-        src="https://api.leadconnectorhq.com/widget/form/iwN5fvztXH1ScqN2mx9h"
+        src={`https://api.leadconnectorhq.com/widget/form/${formId}`}
         style={{ width: '100%', height: '432px', border: 'none', borderRadius: '3px' }}
-        id="inline-iwN5fvztXH1ScqN2mx9h" 
+        id={`inline-${formId}`}
         data-layout="{'id':'INLINE'}"
         data-trigger-type="alwaysShow"
         data-trigger-value=""
@@ -26,11 +26,11 @@ const EmbeddedForm: React.FC = () => {
         data-activation-value=""
         data-deactivation-type="neverDeactivate"
         data-deactivation-value=""
-        data-form-name="RSC Do you have a live deal?"
+        data-form-name="Contact Form"
         data-height="432"
-        data-layout-iframe-id="inline-iwN5fvztXH1ScqN2mx9h"
-        data-form-id="iwN5fvztXH1ScqN2mx9h"
-        title="RSC Do you have a live deal?"
+        data-layout-iframe-id={`inline-${formId}`}
+        data-form-id={formId}
+        title="Contact Form"
       />
     </div>
   );
