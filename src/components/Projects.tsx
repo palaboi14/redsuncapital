@@ -1,3 +1,4 @@
+
 import { 
   Carousel,
   CarouselContent,
@@ -13,24 +14,29 @@ import {
 
 const projectImages = [
   {
-    src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e",
-    alt: "Fix and Flip project - Stunning mountain property",
-    description: "A complete property renovation with stunning mountain views. This project achieved exceptional returns through strategic improvements."
+    src: "/lovable-uploads/d972a9a0-8e5b-483f-8857-00f0cd11a869.png",
+    alt: "Fix and Flip Project - Victorian Style Home",
+    description: "A comprehensive renovation of a classic Victorian-style property in San Francisco, showcasing our expertise in historical property restoration."
   },
   {
-    src: "https://images.unsplash.com/photo-1500673922987-e212871fec22",
-    alt: "Multi-family renovation project - Woodland retreat",
-    description: "This serene woodland property was transformed into luxury vacation rentals, providing steady income streams."
+    src: "/lovable-uploads/cdf5608a-7bc6-46d2-a61e-4f6e84662069.png",
+    alt: "Multi-family Renovation - Historic Building",
+    description: "Complete rehabilitation of a historic multi-family building, preserving its architectural character while modernizing interior spaces."
   },
   {
-    src: "https://images.unsplash.com/photo-1501854140801-50d01698950b",
-    alt: "Commercial property development - Mountain vista",
-    description: "A spectacular mountain-view development that combines commercial and residential spaces in harmony with nature."
+    src: "/lovable-uploads/5908bbbf-774f-4133-9426-6b1291901296.png",
+    alt: "Luxury Residence - Hillside Property",
+    description: "Modern hillside residence transformation featuring expansive views, custom railings, and high-end finishes throughout."
   },
   {
-    src: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb",
-    alt: "Waterfront development - River property",
-    description: "This riverside development project showcases our ability to work with unique waterfront properties."
+    src: "/lovable-uploads/e5c5b4d3-19eb-46c2-a5ba-2a095f8c8172.png",
+    alt: "Single Family Renovation - Ranch Style",
+    description: "Complete renovation of a ranch-style home, featuring updated exterior and modernized living spaces."
+  },
+  {
+    src: "/lovable-uploads/ad1c909e-7326-4cc9-a0df-8594f9d8f61d.png",
+    alt: "Investment Property - Residential Rehab",
+    description: "Strategic renovation of a residential property, focusing on value-add improvements and curb appeal enhancement."
   }
 ];
 
