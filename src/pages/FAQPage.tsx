@@ -25,7 +25,7 @@ const faqItems = [
   },
   {
     question: "Are there any pre-payment penalties?",
-    answer: "It depends on the loan program. Some have no prepayment penalties, while others may require a small fee."
+    answer: "It depends on the loan program. Some have no prepayment penalties, while others may require a small fee. This will also depend on your experience and credit."
   },
   {
     question: "How long does it take to get a hard money loan?",
@@ -37,11 +37,11 @@ const faqItems = [
   },
   {
     question: "What is your minimum/maximum loan amount?",
-    answer: "Our loan amounts range from $100,000 to $10,000,000, depending on the asset and location."
+    answer: "Our loan amounts range from $150,000 to $10,000,000, depending on the asset and location."
   },
   {
     question: "What documents do I need to secure funding for a residential transaction?",
-    answer: "Typically, we require property details, a purchase agreement, proof of funds, and borrower information."
+    answer: "Typically, we require property details, a purchase agreement, an updated and detailed scope of work for rehab projects, proof of funds, and borrower information."
   },
   {
     question: "What states do you currently lend in?",
