@@ -1,5 +1,5 @@
-import { ArrowRight, Mail, MapPin } from 'lucide-react';
-import { Link } from 'react-router-dom';
+
+import { Mail, MapPin } from 'lucide-react';
 import EmbeddedForm from './EmbeddedForm';
 
 const Contact = () => {
@@ -12,7 +12,6 @@ const Contact = () => {
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             To learn more about Red Sun Capital and our lending solutions, please complete the form below. 
-            For loan inquiries, click Get Started.
           </p>
         </div>
         
@@ -49,16 +48,6 @@ const Contact = () => {
                   </p>
                 </div>
               </div>
-            </div>
-            
-            <div className="mt-6">
-              <Link
-                to="/get-funded"
-                className="inline-flex items-center btn-primary text-center justify-center w-full md:w-auto"
-              >
-                <span>GET FUNDED</span>
-                <ArrowRight className="ml-2" size={18} />
-              </Link>
             </div>
           </div>
         </div>

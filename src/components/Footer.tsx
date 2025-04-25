@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 const Footer = () => {
   return <footer className="bg-gradient-to-b from-heritage-800 to-heritage-900 text-white pt-16 pb-8">
@@ -40,18 +41,33 @@ const Footer = () => {
             <h3 className="text-lg font-medium mb-4 text-heritage-100">Resources</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/broker-login" className="text-gray-300 hover:text-white transition-colors">
+                <a 
+                  href="https://app.heritagewealthholdings.com/login/agent" 
+                  className="text-gray-300 hover:text-white transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Broker Login
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/borrower-login" className="text-gray-300 hover:text-white transition-colors">
+                <a 
+                  href="https://app.heritagewealthholdings.com/login/client" 
+                  className="text-gray-300 hover:text-white transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Borrower Login
-                </Link>
+                </a>
               </li>
               <li>
                 <Link to="/privacy-notice" className="text-gray-300 hover:text-white transition-colors">
                   Privacy Notice
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms-of-service" className="text-gray-300 hover:text-white transition-colors">
+                  Terms of Service
                 </Link>
               </li>
             </ul>

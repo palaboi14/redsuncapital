@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +10,8 @@ import LoanProductsPage from "./pages/LoanProductsPage";
 import FAQPage from "./pages/FAQPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
+import PrivacyNotice from "./pages/PrivacyNotice";
+import TermsOfService from "./pages/TermsOfService";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +27,8 @@ const App = () => (
           <Route path="/loan-products" element={<LoanProductsPage />} />
           <Route path="/faqs" element={<FAQPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy-notice" element={<PrivacyNotice />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/get-funded" element={
             <main className="pt-20 min-h-screen bg-white">
               <div className="container mx-auto px-4 py-8">
