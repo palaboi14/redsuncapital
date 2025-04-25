@@ -1,7 +1,7 @@
-
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BlurredCircle from './BlurredCircle';
+import FundingDialog from './FundingDialog';
 
 const Hero = () => {
   return (
@@ -36,13 +36,7 @@ const Hero = () => {
             </div>
             
             <div className="mt-12 opacity-0 animate-fade-in-delay-3">
-              <Link 
-                to="/get-funded" 
-                className="btn-primary inline-flex items-center group"
-              >
-                GET MY FUNDING
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-              </Link>
+              <FundingDialog className="btn-primary inline-flex items-center group" />
             </div>
           </div>
           
@@ -57,18 +51,22 @@ const Hero = () => {
       
       <div className="container mx-auto px-4 md:px-6 mt-16">
         <div className="grid md:grid-cols-2 gap-4 max-w-md mx-auto">
-          <Link 
-            to="/broker-login" 
+          <a 
+            href="https://app.heritagewealthholdings.com/login/agent" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-white shadow-sm hover:shadow-md border border-gray-200 rounded-lg p-4 text-center transition-all duration-300 hover:-translate-y-1"
           >
             <span className="font-medium">Broker Login</span>
-          </Link>
-          <Link 
-            to="/borrower-login" 
+          </a>
+          <a 
+            href="https://app.heritagewealthholdings.com/login/client" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-white shadow-sm hover:shadow-md border border-gray-200 rounded-lg p-4 text-center transition-all duration-300 hover:-translate-y-1"
           >
             <span className="font-medium">Borrower Login</span>
-          </Link>
+          </a>
         </div>
       </div>
     </section>
