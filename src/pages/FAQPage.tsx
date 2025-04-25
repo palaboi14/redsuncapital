@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import {
@@ -94,104 +93,33 @@ const FAQAccordion = () => {
 };
 
 const AdditionalQuestions = () => {
-  const [dealStatus, setDealStatus] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [question, setQuestion] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log({ dealStatus, name, email, question });
-    // Reset form
-    setDealStatus('');
-    setName('');
-    setEmail('');
-    setQuestion('');
-    // Show success message
-    alert('Thank you for your inquiry. We will get back to you soon.');
-  };
-
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold mb-6 text-heritage-700">Do You Have Additional Questions?</h2>
           <p className="text-gray-600 mb-8">
             We're here to help. Fill out the form below and our team will get back to you as soon as possible.
           </p>
-          
-          <form onSubmit={handleSubmit} className="space-y-6 text-left">
-            <div className="space-y-2">
-              <label htmlFor="dealStatus" className="block text-sm font-medium text-gray-700">
-                Do you currently have a live deal?
-              </label>
-              <select 
-                id="dealStatus" 
-                value={dealStatus}
-                onChange={(e) => setDealStatus(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-heritage-500 focus:border-heritage-500"
-                required
-              >
-                <option value="">Please select</option>
-                <option value="yes">Yes, I have a live deal</option>
-                <option value="soon">Not yet, but I will soon</option>
-                <option value="no">No, just exploring options</option>
-              </select>
-            </div>
-            
-            <div className="space-y-2">
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Your Name
-              </label>
-              <Input 
-                type="text" 
-                id="name" 
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="John Doe"
-                required
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email Address
-              </label>
-              <Input 
-                type="email" 
-                id="email" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                required
-              />
-            </div>
-            
-            {/* Add multiline textarea for questions */}
-            <div className="space-y-2">
-              <label htmlFor="question" className="block text-sm font-medium text-gray-700">
-                Your Question
-              </label>
-              <Textarea 
-                id="question" 
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                placeholder="Please describe your question in detail..."
-                className="min-h-[120px]" // Set minimum height for 5+ lines
-                rows={5}
-                required
-              />
-            </div>
-            
-            <Button 
-              type="submit" 
-              className="w-full bg-heritage-500 hover:bg-heritage-600 text-white"
-            >
-              Submit Inquiry
-              <ArrowRight className="ml-2" size={18} />
-            </Button>
-          </form>
+          <div className="bg-white rounded-xl shadow-md p-8 border border-gray-100">
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/form/9m5t5VyR2hZDwq0NUnya"
+              style={{ width: '100%', height: '432px', border: 'none', borderRadius: '3px' }}
+              id="inline-9m5t5VyR2hZDwq0NUnya" 
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="RSC Do you have a live deal?"
+              data-height="432"
+              data-layout-iframe-id="inline-9m5t5VyR2hZDwq0NUnya"
+              data-form-id="9m5t5VyR2hZDwq0NUnya"
+              title="RSC Do you have a live deal?"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -201,7 +129,6 @@ const AdditionalQuestions = () => {
 const FAQPage = () => {
   return (
     <MainLayout>
-      {/* Add larger, more dynamic gradient in top-left */}
       <AnimatedGradient 
         size="2xl" 
         animation="flow" 

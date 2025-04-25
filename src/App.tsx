@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -25,12 +24,29 @@ const App = () => (
           <Route path="/loan-products" element={<LoanProductsPage />} />
           <Route path="/faqs" element={<FAQPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/get-funded" element={<Index />} />
-          <Route path="/broker-login" element={<Index />} />
-          <Route path="/borrower-login" element={<Index />} />
-          <Route path="/privacy-notice" element={<Index />} />
-          <Route path="/terms-of-service" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/get-funded" element={
+            <main className="pt-20 min-h-screen bg-white">
+              <div className="container mx-auto px-4 py-8">
+                <iframe
+                  src="https://api.leadconnectorhq.com/widget/form/qTav4QsjvlzpIr4u06OK"
+                  style={{ width: '100%', minHeight: '90vh', border: 'none', borderRadius: '8px' }}
+                  id="inline-qTav4QsjvlzpIr4u06OK"
+                  data-layout="{'id':'INLINE'}"
+                  data-trigger-type="alwaysShow"
+                  data-trigger-value=""
+                  data-activation-type="alwaysActivated"
+                  data-activation-value=""
+                  data-deactivation-type="neverDeactivate"
+                  data-deactivation-value=""
+                  data-form-name="Get My Funding"
+                  data-height="100%"
+                  data-layout-iframe-id="inline-qTav4QsjvlzpIr4u06OK"
+                  data-form-id="qTav4QsjvlzpIr4u06OK"
+                  title="Get My Funding"
+                />
+              </div>
+            </main>
+          } />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
