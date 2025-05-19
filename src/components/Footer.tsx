@@ -75,10 +75,6 @@ const Footer = () => {
           
           <div>
             <h3 className="text-lg font-medium mb-4 text-heritage-100">Contact</h3>
-            <p className="text-gray-300 mb-2">
-              91-270 Hanua St Suite 1A,<br />
-              Kapolei, HI 96707
-            </p>
             <a href="mailto:go@redsuncapital.com" className="text-gray-300 hover:text-white transition-colors">
               go@redsuncapital.com
             </a>
