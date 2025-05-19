@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Linkedin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -18,14 +17,14 @@ interface TeamMember {
   linkedin?: string;
 }
 
-// Sample team data - removed Tison Young
+// Sample team data - updated bios
 const teamMembers: TeamMember[] = [
   {
     id: 1,
     name: 'Aidan Wong',
     title: 'Managing Partner',
     image: '/lovable-uploads/c73ac345-fb90-40f8-8ccd-21523ddaca14.png',
-    bio: 'Aidan brings over 15 years of experience in commercial real estate financing. He specializes in structuring complex deals and has a background in investment banking. His strategic approach has helped clients navigate challenging market conditions and secure optimal financing solutions for their investments.',
+    bio: 'Aidan Wong started as a real estate investor before moving into hard money lending in 2020. With over $250M funded, he\'s known for structuring complex deals and understanding investor goals. A former Marine, Aidan brings discipline and leadership to both financing and building Red Sun Capital.',
     experience: '15+ Years',
     deals: '$350M+ Closed',
     expertise: ['Fix & Flip', 'DSCR', 'Construction', 'Portfolio Loans'],
@@ -36,7 +35,7 @@ const teamMembers: TeamMember[] = [
     name: 'Adrian Posoz',
     title: 'Senior Loan Advisor',
     image: '/placeholder.svg',
-    bio: 'Adrian has been with Red Sun Capital for 8 years, focusing primarily on commercial property acquisitions and refinancing. His attention to detail and deep understanding of underwriting processes makes him an invaluable asset to clients seeking competitive loan terms and expedited closings.',
+    bio: 'Adrian Posoz previously led loan originations at a national hard money firm, where he built a reputation for high-volume deal execution and team leadership. A current home builder, himself, he brings investor insight and underwriting expertise to Red Sun Capital, helping clients scale with speed and confidence.',
     experience: '12+ Years',
     deals: '$275M+ Closed',
     expertise: ['Multi-Family', 'Mixed-Use', 'Office', 'Retail'],
