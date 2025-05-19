@@ -791,60 +791,60 @@ const LoanProducts = () => {
       icon: <Home size={24} />,
       title: "FIX AND FLIP",
       description: "Perfect for investors looking to renovate and sell properties for profit.",
-      longDescription: "Our Fix and Flip loans are designed for real estate investors who purchase properties to renovate and resell them quickly for profit. These short-term loans typically range from 6-24 months and offer competitive rates with up to 80% LTV and 100% of rehab costs. Our streamlined process ensures quick closings, allowing you to move fast on opportunities. Interest-only payments during the renovation period help maximize your cash flow.",
+      longDescription: "Our Fix and Flip loans are designed for real estate investors who purchase properties to renovate and resell them quickly for profit. These short-term loans typically range from 12-24 months and offer competitive rates with up to 92% LTV and 100% of rehab costs. Our streamlined process ensures quick closings, allowing you to move fast on opportunities. Interest-only payments during the renovation period help maximize your cash flow.",
       documentRequirements: [
+        "Signed Loan Application for all guarantors",
+        "Driver's License or other proof of identity",
         "Property purchase agreement",
-        "Proof of funds or pre-approval letter",
         "Detailed renovation budget and timeline",
-        "Contractor bids and agreements",
-        "Proof of insurance",
-        "Personal and business tax returns (last 2 years)",
-        "Recent bank statements (last 3 months)",
-        "Property comparables for after-repair value",
-        "Exit strategy documentation"
+        "Recent 2-month liquidity statements (inquire about our no liquidity verification products)",
+        "Entity Documents",
+        "Real Estate Investment Track Record",
+        "Appraisal"
       ]
     },
     {
       icon: <Building size={24} />,
       title: "GROUND UP CONSTRUCTION",
       description: "Finance new construction projects with flexible terms and competitive rates.",
-      longDescription: "Ground Up Construction loans provide financing for new construction projects from the ground up. These loans cover land acquisition, development, and building construction costs. We offer flexible draw schedules aligned with construction milestones, with terms typically ranging from 12-36 months. Our construction loans feature interest-only payments during the building phase on funds drawn and can transition to permanent financing if needed. We understand construction timelines and provide the flexibility needed for successful project completion.",
+      longDescription: "Ground Up Construction loans provide financing for new construction projects from the ground up. These loans cover up to 75% of land acquisition, and 100% of development and building construction costs. We offer flexible draw schedules aligned with construction milestones, with terms typically ranging from 12 to 24 months. Our construction loans feature interest-only payments with built-in interest reserves, ensuring you don't need to make payments during the length of the project. We understand construction timelines and provide the flexibility needed for successful project completion.",
       documentRequirements: [
-        "Architectural plans and specifications",
-        "Construction budget and timeline",
+        "Signed Loan Application for all guarantors",
+        "Driver's License or other proof of identity",
+        "Property purchase agreement",
+        "Detailed construction budget and timeline",
+        "Entity Documents",
+        "Real Estate Investment Track Record",
+        "Plans and permits, if applicable",
         "Builder/contractor license and insurance",
-        "Land ownership documentation",
-        "Building permits and zoning approvals",
-        "Environmental assessments",
-        "Project feasibility study",
-        "Personal and business financial statements",
         "Construction contract",
-        "Builder's risk insurance policy"
+        "Appraisal"
       ]
     },
     {
       icon: <Briefcase size={24} />,
       title: "INVESTOR LOANS BRIDGE",
       description: "Short-term financing to bridge the gap between property purchases.",
-      longDescription: "Bridge loans provide short-term financing to 'bridge the gap' between transactions, such as purchasing a new property before selling an existing one. These loans typically range from 6-24 months with competitive rates and quick closings (as fast as 10 days). They're ideal for time-sensitive opportunities, auction purchases, or securing properties while arranging long-term financing. Our bridge loans offer flexible exit strategies and minimal documentation requirements compared to traditional loans.",
+      longDescription: "Bridge loans provide short-term financing to 'bridge the gap' between transactions, such as refinancing a maturing loan while waiting for your flip to sell. These loans typically range from 6-24 months, up to 80% LTV, and with competitive rates and quick closings. They're ideal for time-sensitive opportunities, auction purchases, or securing properties while arranging long-term financing. Our bridge loans offer flexible exit strategies and minimal documentation requirements compared to traditional loans.",
       documentRequirements: [
-        "Purchase agreement for new property",
-        "Current property ownership documentation",
-        "Proof of equity in existing property",
-        "Exit strategy documentation",
-        "Personal and business financial statements",
-        "Credit report",
-        "Property appraisal",
-        "Proof of insurance",
-        "Bank statements (last 3 months)"
+        "Signed Loan Application for all guarantors",
+        "Driver's License or other proof of identity",
+        "Property purchase agreement",
+        "Summary of exit strategy plan",
+        "Recent 2-month liquidity statements (inquire about our no liquidity verification products)",
+        "Entity Documents",
+        "Real Estate Investment Track Record",
+        "Appraisal"
       ]
     },
     {
       icon: <LineChart size={24} />,
       title: "DSCR",
       description: "Debt Service Coverage Ratio loans for investment property acquisitions.",
-      longDescription: "DSCR (Debt Service Coverage Ratio) loans are based on the property's income rather than the borrower's personal income. This makes them ideal for real estate investors with multiple properties or self-employed individuals. These loans qualify based on whether the property's income covers debt payments. We offer DSCR loans with competitive rates, longer terms (10 or 30 years), no personal income verification, and availability for both individual investors and LLCs. They're perfect for building a portfolio of cash-flowing rental properties.",
+      longDescription: "DSCR (Debt Service Coverage Ratio) loans are based on the property's income rather than the borrower's personal income. This makes them ideal for real estate investors with multiple properties or self-employed individuals. These loans qualify based on whether the property's income covers debt payments. We offer DSCR loans of up to 85% for purchases and 80% for refinances, with competitive rates, longer terms (10 or 30 years), no personal income verification, and availability for both individual investors and LLCs. They're perfect for building a portfolio of cash-flowing rental properties.",
       documentRequirements: [
+        "Signed Loan Application for all guarantors",
+        "Driver's License or other proof of identity",
         "Property rent roll and lease agreements",
         "Property expense documentation",
         "Purchase agreement",
