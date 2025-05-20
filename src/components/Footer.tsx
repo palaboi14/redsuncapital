@@ -1,5 +1,7 @@
 
 import { Link } from 'react-router-dom';
+import { Mail, Phone } from 'lucide-react';
+
 const Footer = () => {
   return <footer className="bg-gradient-to-b from-heritage-800 to-heritage-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
@@ -75,9 +77,18 @@ const Footer = () => {
           
           <div>
             <h3 className="text-lg font-medium mb-4 text-heritage-100">Contact</h3>
-            <a href="mailto:go@redsuncapital.com" className="text-gray-300 hover:text-white transition-colors">
-              go@redsuncapital.com
-            </a>
+            <div className="flex items-start mb-4">
+              <Phone className="text-heritage-500 mt-1 mr-3" size={16} />
+              <a href="tel:+16199276199" className="text-gray-300 hover:text-white transition-colors">
+                +1-619-927-6199
+              </a>
+            </div>
+            <div className="flex items-start">
+              <Mail className="text-heritage-500 mt-1 mr-3" size={16} />
+              <a href="mailto:go@redsuncapital.com" className="text-gray-300 hover:text-white transition-colors">
+                go@redsuncapital.com
+              </a>
+            </div>
           </div>
         </div>
         

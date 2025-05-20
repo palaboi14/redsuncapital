@@ -27,10 +27,10 @@ const ContactHero = () => {
               <Phone className="text-heritage-500" size={20} />
               <span>For faster responses, give us a call (or TEXT) at </span>
               <a 
-                href="tel:8084273312" 
+                href="tel:+16199276199" 
                 className="text-heritage-500 hover:text-heritage-600 font-medium"
               >
-                (808) 427-3312
+                +1-619-927-6199
               </a>
             </div>
             

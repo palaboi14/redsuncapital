@@ -1,5 +1,5 @@
 
-import { Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import EmbeddedForm from './EmbeddedForm';
 
 const Contact = () => {
@@ -25,6 +25,19 @@ const Contact = () => {
               <h3 className="font-bold text-2xl mb-6 text-heritage-600">
                 Red Sun Capital
               </h3>
+              
+              <div className="flex items-start mb-4">
+                <Phone className="text-heritage-500 mt-1 mr-3" size={20} />
+                <div>
+                  <p className="font-medium">Phone:</p>
+                  <a 
+                    href="tel:+16199276199" 
+                    className="text-gray-600 hover:text-heritage-500 transition-colors"
+                  >
+                    +1-619-927-6199
+                  </a>
+                </div>
+              </div>
               
               <div className="flex items-start mb-4">
                 <Mail className="text-heritage-500 mt-1 mr-3" size={20} />
