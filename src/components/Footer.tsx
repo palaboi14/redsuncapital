@@ -9,7 +9,6 @@ const Footer = () => {
             <div className="mb-4 px-[82px]">
               <img alt="Red Sun Capital, LLC" className="h-20" src="/lovable-uploads/853816ae-fa88-43e7-af47-3bf08cd90a75.png" />
             </div>
-            <p className="text-gray-300 mb-6 font-thin text-xs text-justify">Red Sun Capital, LLC is a wholly-owned subsidiary of Heritage Wealth Holdings, LLC.</p>
           </div>
           
           <div>
