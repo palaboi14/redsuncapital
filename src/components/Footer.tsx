@@ -7,7 +7,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-full md:col-span-1">
             <div className="mb-4 px-[82px]">
-              <img alt="Red Sun Capital, LLC" className="h-20" src="/lovable-uploads/853816ae-fa88-43e7-af47-3bf08cd90a75.png" />
+              <img 
+                alt="Red Sun Capital, LLC" 
+                className="h-20 brightness-0 invert" 
+                src="/lovable-uploads/853816ae-fa88-43e7-af47-3bf08cd90a75.png" 
+              />
             </div>
           </div>
           
