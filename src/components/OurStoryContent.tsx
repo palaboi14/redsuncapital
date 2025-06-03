@@ -1,65 +1,112 @@
+
+import { ArrowRight, Target, Users, TrendingUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 const OurStoryContent = () => {
-  return <section className="py-16 bg-white md:py-[94px]">
+  return (
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
-              It's a hard market for innovative capital partners. It's a good market for us.
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-start mb-16">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-heritage-600">
+                Our Mission
+              </h2>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                At Red Sun Capital, we are dedicated to empowering real estate investors with the financing solutions they need to succeed. We understand that traditional lending often falls short of meeting the unique needs of real estate investors.
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                That's why we've created a lending platform that prioritizes speed, flexibility, and transparency, allowing our clients to capitalize on opportunities quickly and efficiently.
+              </p>
+            </div>
+            
+            <div className="bg-heritage-50 p-8 rounded-xl">
+              <Target className="text-heritage-500 mb-4" size={48} />
+              <h3 className="text-xl font-bold mb-4 text-heritage-600">
+                Our Vision
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                To be the premier private lending partner for real estate investors nationwide, providing innovative financing solutions that drive growth and success in the real estate market.
+              </p>
+            </div>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className="text-center">
+              <div className="bg-heritage-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Users className="text-heritage-600" size={32} />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-heritage-600">Client-Focused</h3>
+              <p className="text-gray-600">
+                We put our clients first, understanding their unique needs and providing personalized solutions.
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-heritage-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <TrendingUp className="text-heritage-600" size={32} />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-heritage-600">Innovation</h3>
+              <p className="text-gray-600">
+                We continuously evolve our lending processes and technology to serve our clients better.
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-heritage-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Target className="text-heritage-600" size={32} />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-heritage-600">Results-Driven</h3>
+              <p className="text-gray-600">
+                We measure our success by the success of our clients and their real estate investments.
+              </p>
+            </div>
+          </div>
+          
+          <div className="bg-gray-50 p-8 rounded-xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-heritage-600">
+              Why Choose Red Sun Capital?
             </h2>
-            <div className="space-y-6 text-gray-600">
-              <p>
-                At <span className="font-semibold text-heritage-600">Red Sun Capital</span>, we're not just another lender in the crowded real estate financing landscape. 
-                We're a team of dedicated professionals with decades of combined experience who understand what investors really need.
-              </p>
-              <p>
-                We founded Red Sun Capital because we saw the gap in the market. Traditional lenders are too slow, too rigid, and too 
-                disconnected from the realities of real estate investing. Hard money lenders often charge exorbitant rates and fees 
-                that eat into your profits.
-              </p>
-              <p>
-                Our approach is different. We combine the reliability and strength of institutional capital with the speed, flexibility, 
-                and personal touch of a boutique lender. We're relationship-driven, not transaction-obsessed, and we're committed to 
-                helping our clients build wealth through real estate.
-              </p>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-xl font-bold mb-3 text-heritage-600">Speed & Efficiency</h3>
+                <p className="text-gray-600 mb-4">
+                  Our streamlined processes and experienced team enable us to close loans quickly, often in as little as 10 days.
+                </p>
+                
+                <h3 className="text-xl font-bold mb-3 text-heritage-600">Flexible Terms</h3>
+                <p className="text-gray-600">
+                  We offer customizable loan structures that adapt to your specific project needs and investment strategy.
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="text-xl font-bold mb-3 text-heritage-600">Experienced Team</h3>
+                <p className="text-gray-600 mb-4">
+                  Our team brings decades of combined experience in real estate investing and private lending.
+                </p>
+                
+                <h3 className="text-xl font-bold mb-3 text-heritage-600">Transparent Process</h3>
+                <p className="text-gray-600">
+                  No hidden fees or surprises. We believe in clear communication and transparent lending practices.
+                </p>
+              </div>
             </div>
           </div>
           
-          <div className="relative">
-            <div className="rounded-lg overflow-hidden shadow-xl">
-              <img src="https://images.unsplash.com/photo-1579389083395-4507e98b5e67?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Red Sun Capital Team" className="w-full h-auto object-cover" />
-            </div>
-            <div className="absolute -bottom-5 -left-5 w-24 h-24 bg-heritage-500/80 rounded-lg z-0 hidden md:block"></div>
-          </div>
-        </div>
-        
-        <div className="mt-24 grid md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1 relative">
-            <div className="rounded-lg overflow-hidden shadow-xl">
-              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Red Sun Capital Office" className="w-full h-auto object-cover" />
-            </div>
-            <div className="absolute -top-5 -right-5 w-24 h-24 bg-heritage-500/80 rounded-lg z-0 hidden md:block"></div>
-          </div>
-          
-          <div className="order-1 md:order-2">
-            <div className="space-y-6 text-gray-600">
-              <p>
-                What sets us apart is our commitment to innovation and service. We're constantly developing new loan products that address 
-                the evolving needs of real estate investors. Our deep understanding of local markets across the country allows us to 
-                make informed lending decisions quickly.
-              </p>
-              <p>
-                We believe that success in real estate financing comes from building lasting relationships. That's why we take the time 
-                to understand your investment strategy and goals. We're advisors as much as we are lenders, providing insights and guidance 
-                that help you make better investment decisions.
-              </p>
-              <p>
-                At Red Sun Capital, we're proud of our track record of helping investors achieve their goals. Whether you're an experienced 
-                investor with a large portfolio or just getting started, we have loan solutions designed to meet your needs.
-              </p>
-            </div>
+          <div className="text-center mt-12">
+            <Link 
+              to="/contact" 
+              className="inline-flex items-center btn-primary group"
+            >
+              <span>Get Started Today</span>
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+            </Link>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default OurStoryContent;
