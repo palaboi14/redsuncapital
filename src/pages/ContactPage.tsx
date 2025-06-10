@@ -2,10 +2,8 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
 import EmbeddedForm from '@/components/EmbeddedForm';
-
 const ContactHero = () => {
-  return (
-    <section className="py-24 bg-white">
+  return <section className="py-24 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
@@ -25,10 +23,7 @@ const ContactHero = () => {
             <div className="flex items-center gap-2 text-lg py-1">
               <Phone className="text-heritage-500" size={20} />
               <span>For faster responses, give us a call (or TEXT) at </span>
-              <a 
-                href="tel:+16199276199" 
-                className="text-heritage-500 hover:text-heritage-600 font-medium"
-              >
+              <a href="tel:+16199276199" className="text-heritage-500 hover:text-heritage-600 font-medium">
                 +1-619-927-6199
               </a>
             </div>
@@ -36,12 +31,7 @@ const ContactHero = () => {
             <div className="flex items-center gap-2 text-lg py-1">
               <Mail className="text-heritage-500" size={20} />
               <span>Email us at </span>
-              <a 
-                href="mailto:go@redsuncapital.com"
-                className="text-heritage-500 hover:text-heritage-600 font-medium"
-              >
-                go@redsuncapital.com
-              </a>
+              <a href="mailto:go@redsuncapital.com" className="text-heritage-500 hover:text-heritage-600 font-medium">info@redsuncapital.com</a>
             </div>
             
             <div className="flex items-start gap-2 text-lg py-1">
@@ -61,13 +51,10 @@ const ContactHero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 const ContactForm = () => {
-  return (
-    <section className="py-16 bg-gray-50">
+  return <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-xl mx-auto bg-white rounded-xl shadow-sm p-8 border border-gray-100">
           <h2 className="text-2xl font-bold mb-6 text-gray-900">
@@ -90,17 +77,12 @@ const ContactForm = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 const ContactPage = () => {
-  return (
-    <MainLayout>
+  return <MainLayout>
       <ContactHero />
       <ContactForm />
-    </MainLayout>
-  );
+    </MainLayout>;
 };
-
 export default ContactPage;
