@@ -193,8 +193,12 @@ const PrivacyNotice = () => {
             
             <section>
               <h2 className="text-2xl font-bold mb-4 text-heritage-600">10. Contact Us</h2>
-              <p className="mb-2">If you have any questions, comments or concerns regarding our Privacy Policy and/or practices, please send an email to: <a href="mailto:go@redsuncapital.com" className="text-heritage-500 hover:underline">go@redsuncapital.com</a></p>
+              <p className="mb-2">If you have any questions, comments or concerns regarding our Privacy Policy and/or practices, please send an email to: <a href="mailto:info@redsuncapital.com" className="text-heritage-500 hover:underline">info@redsuncapital.com</a></p>
               <p className="font-medium">Red Sun Capital, LLC</p>
+              <p className="text-gray-700">
+                118 Vintage Park Blvd #W317<br />
+                Houston, TX 77070
+              </p>
             </section>
           </div>
         </div>

@@ -111,12 +111,12 @@ const TermsOfService = () => {
             <section>
               <h2 className="text-2xl font-bold mb-4 text-heritage-600">9. Contact Information</h2>
               <p className="mb-2 text-gray-700">
-                If you have any questions about these Terms of Service, please contact us at: <a href="mailto:go@redsuncapital.com" className="text-heritage-500 hover:underline">go@redsuncapital.com</a>
+                If you have any questions about these Terms of Service, please contact us at: <a href="mailto:info@redsuncapital.com" className="text-heritage-500 hover:underline">info@redsuncapital.com</a>
               </p>
               <p className="font-medium text-gray-700">Red Sun Capital, LLC</p>
               <p className="text-gray-700">
-                91-270 Hanua St Suite 1A<br />
-                Kapolei, HI 96707
+                118 Vintage Park Blvd #W317<br />
+                Houston, TX 77070
               </p>
             </section>
           </div>
