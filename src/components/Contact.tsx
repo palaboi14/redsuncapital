@@ -1,3 +1,4 @@
+
 import { Mail, MapPin, Phone } from 'lucide-react';
 import EmbeddedForm from './EmbeddedForm';
 const Contact = () => {
@@ -43,6 +44,16 @@ const Contact = () => {
                 </div>
               </div>
               
+              <div className="flex items-start">
+                <MapPin className="text-heritage-500 mt-1 mr-3" size={20} />
+                <div>
+                  <p className="font-medium">Address:</p>
+                  <div className="text-gray-600">
+                    <div>118 Vintage Park Blvd #W317</div>
+                    <div>Houston, TX 77070</div>
+                  </div>
+                </div>
+              </div>
               
             </div>
           </div>

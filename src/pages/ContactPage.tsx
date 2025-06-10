@@ -1,5 +1,4 @@
-
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
 import EmbeddedForm from '@/components/EmbeddedForm';
@@ -43,6 +42,17 @@ const ContactHero = () => {
               >
                 go@redsuncapital.com
               </a>
+            </div>
+            
+            <div className="flex items-start gap-2 text-lg py-1">
+              <MapPin className="text-heritage-500 mt-1" size={20} />
+              <div>
+                <span>Visit us at </span>
+                <div className="font-medium">
+                  <div>118 Vintage Park Blvd #W317</div>
+                  <div>Houston, TX 77070</div>
+                </div>
+              </div>
             </div>
             
             <p className="text-lg pt-2">
