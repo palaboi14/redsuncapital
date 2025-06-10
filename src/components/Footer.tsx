@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 const Footer = () => {
@@ -50,14 +51,14 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <Link to="/privacy-notice" className="text-gray-300 hover:text-white transition-colors">
+                <a href="https://redsuncapital.com/privacy-notice" className="text-gray-300 hover:text-white transition-colors">
                   Privacy Notice
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/terms-of-service" className="text-gray-300 hover:text-white transition-colors">
+                <a href="https://redsuncapital.com/terms-of-service" className="text-gray-300 hover:text-white transition-colors">
                   Terms of Service
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -72,7 +73,7 @@ const Footer = () => {
             </div>
             <div className="flex items-start mb-4">
               <Mail className="text-heritage-500 mt-1 mr-3" size={16} />
-              <a href="mailto:go@redsuncapital.com" className="text-gray-300 hover:text-white transition-colors">info@redsuncapital.com</a>
+              <a href="mailto:info@redsuncapital.com" className="text-gray-300 hover:text-white transition-colors">info@redsuncapital.com</a>
             </div>
             <div className="flex items-start">
               <MapPin className="text-heritage-500 mt-1 mr-3" size={16} />
@@ -90,12 +91,12 @@ const Footer = () => {
               © Copyright Red Sun Capital, LLC {new Date().getFullYear()}
             </p>
             <div className="flex space-x-6">
-              <Link to="/privacy-notice" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <a href="https://redsuncapital.com/privacy-notice" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Privacy Notice
-              </Link>
-              <Link to="/terms-of-service" className="text-gray-400 hover:text-white text-sm transition-colors">
+              </a>
+              <a href="https://redsuncapital.com/terms-of-service" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Terms of Service
-              </Link>
+              </a>
             </div>
           </div>
         </div>
