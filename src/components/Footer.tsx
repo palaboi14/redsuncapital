@@ -1,18 +1,12 @@
-
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
-
 const Footer = () => {
   return <footer className="bg-gradient-to-b from-heritage-800 to-heritage-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-full md:col-span-1">
             <div className="mb-4 px-[82px]">
-              <img 
-                alt="Red Sun Capital, LLC" 
-                className="h-20 brightness-0 invert" 
-                src="/lovable-uploads/853816ae-fa88-43e7-af47-3bf08cd90a75.png" 
-              />
+              <img alt="Red Sun Capital, LLC" className="h-20 brightness-0 invert" src="/lovable-uploads/853816ae-fa88-43e7-af47-3bf08cd90a75.png" />
             </div>
           </div>
           
@@ -46,22 +40,12 @@ const Footer = () => {
             <h3 className="text-lg font-medium mb-4 text-heritage-100">Resources</h3>
             <ul className="space-y-2">
               <li>
-                <a 
-                  href="https://app.heritagewealthholdings.com/login/agent" 
-                  className="text-gray-300 hover:text-white transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://app.heritagewealthholdings.com/login/agent" className="text-gray-300 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
                   Broker Login
                 </a>
               </li>
               <li>
-                <a 
-                  href="https://app.heritagewealthholdings.com/login/client" 
-                  className="text-gray-300 hover:text-white transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://app.heritagewealthholdings.com/login/client" className="text-gray-300 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
                   Borrower Login
                 </a>
               </li>
@@ -88,9 +72,7 @@ const Footer = () => {
             </div>
             <div className="flex items-start mb-4">
               <Mail className="text-heritage-500 mt-1 mr-3" size={16} />
-              <a href="mailto:go@redsuncapital.com" className="text-gray-300 hover:text-white transition-colors">
-                go@redsuncapital.com
-              </a>
+              <a href="mailto:go@redsuncapital.com" className="text-gray-300 hover:text-white transition-colors">info@redsuncapital.com</a>
             </div>
             <div className="flex items-start">
               <MapPin className="text-heritage-500 mt-1 mr-3" size={16} />
