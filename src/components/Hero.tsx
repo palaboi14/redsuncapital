@@ -52,7 +52,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 md:px-6 mt-16">
         <div className="grid md:grid-cols-2 gap-4 max-w-md mx-auto">
           <a 
-            href="https://app.heritagewealthholdings.com/login/agent" 
+            href="https://app.redsuncapital.com/login/agent" 
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white shadow-sm hover:shadow-md border border-gray-200 rounded-lg p-4 text-center transition-all duration-300 hover:-translate-y-1"
@@ -60,7 +60,7 @@ const Hero = () => {
             <span className="font-medium">Broker Login</span>
           </a>
           <a 
-            href="https://app.heritagewealthholdings.com/login/client" 
+            href="https://app.redsuncapital.com/login/client" 
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white shadow-sm hover:shadow-md border border-gray-200 rounded-lg p-4 text-center transition-all duration-300 hover:-translate-y-1"

@@ -41,12 +41,12 @@ const Footer = () => {
             <h3 className="text-lg font-medium mb-4 text-heritage-100">Resources</h3>
             <ul className="space-y-2">
               <li>
-                <a href="https://app.heritagewealthholdings.com/login/agent" className="text-gray-300 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+                <a href="https://app.redsuncapital.com/login/agent" className="text-gray-300 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
                   Broker Login
                 </a>
               </li>
               <li>
-                <a href="https://app.heritagewealthholdings.com/login/client" className="text-gray-300 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+                <a href="https://app.redsuncapital.com/login/client" className="text-gray-300 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
                   Borrower Login
                 </a>
               </li>
