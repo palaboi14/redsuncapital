@@ -5,13 +5,13 @@ const QuickAppPage = () => {
   return (
     <MainLayout>
       <div className="pt-20 min-h-screen bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-6">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+        <div className="container mx-auto px-4 py-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold mb-2 text-gray-900">
                 Quick Loan <span className="text-gradient">Application.</span>
               </h1>
-              <p className="text-lg text-gray-600 mb-2">
+              <p className="text-lg text-gray-600 mb-1">
                 Get started with your hard money loan application in minutes.
               </p>
               <p className="text-sm text-gray-500">
@@ -19,15 +19,15 @@ const QuickAppPage = () => {
               </p>
             </div>
             
-            {/* Centered Form */}
+            {/* Full Page Form */}
             <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-              <div className="p-6 bg-heritage-500">
+              <div className="p-4 bg-heritage-500">
                 <h2 className="text-2xl font-bold text-white text-center">Loan Application</h2>
               </div>
-              <div className="p-6">
+              <div className="p-4">
                 <iframe
                   src="https://app.redsuncapital.com/HMLOWebForm.php?bRc=ffa1d31537889496&fOpt=8e614f58c0d670e4&op=aa4465703ef4b17e"
-                  style={{ width: '100%', height: '800px', border: 'none', borderRadius: '4px' }}
+                  style={{ width: '100%', height: '85vh', border: 'none', borderRadius: '4px' }}
                   title="Quick Loan Application Form"
                 />
               </div>
