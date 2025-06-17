@@ -12,6 +12,7 @@ import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 import PrivacyNotice from "./pages/PrivacyNotice";
 import TermsOfService from "./pages/TermsOfService";
+import POFPage from "./pages/POFPage";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/privacy-notice" element={<PrivacyNotice />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/pof" element={<POFPage />} />
           <Route path="/get-funded" element={
             <main className="pt-20 min-h-screen bg-white">
               <div className="container mx-auto px-4 py-8">
