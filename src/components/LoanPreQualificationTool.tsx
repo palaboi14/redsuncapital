@@ -32,24 +32,36 @@ const LoanPreQualificationTool = () => {
   });
   const [results, setResults] = useState<PreQualificationResult | null>(null);
 
-  const steps = [
+  const baseSteps = [
     { title: 'Loan Type', component: LoanTypeStep },
     { title: 'Basic Info', component: BasicInfoStep },
     { title: 'Property Details', component: PropertyDetailsStep },
-    { title: 'Borrower Profile', component: BorrowerProfileStep },
-    { title: 'Rental Details', component: RentalDetailsStep },
+    { title: 'Borrower Profile', component: BorrowerProfileStep }
+  ];
+
+  const shouldShowRentalStep = formData.loanType === 'Rental/DSCR';
+  
+  // Build the complete steps array based on loan type
+  const allSteps = [
+    ...baseSteps,
+    ...(shouldShowRentalStep ? [{ title: 'Rental Details', component: RentalDetailsStep }] : []),
     { title: 'Results', component: PreQualificationResults }
   ];
 
-  const progress = ((currentStep + 1) / steps.length) * 100;
+  const progress = ((currentStep + 1) / allSteps.length) * 100;
 
   const handleNext = () => {
-    if (currentStep === steps.length - 2) {
-      // Calculate pre-qualification before showing results
+    const nextStep = currentStep + 1;
+    
+    // Check if we're moving to the results step
+    if (nextStep === allSteps.length - 1) {
+      console.log('Calculating pre-qualification results...');
       const preQualResult = calculatePreQualification(formData);
+      console.log('Pre-qualification result:', preQualResult);
       setResults(preQualResult);
     }
-    setCurrentStep(Math.min(currentStep + 1, steps.length - 1));
+    
+    setCurrentStep(nextStep);
   };
 
   const handlePrevious = () => {
@@ -81,18 +93,22 @@ const LoanPreQualificationTool = () => {
     setResults(null);
   };
 
-  const shouldShowRentalStep = formData.loanType === 'Rental/DSCR';
-  const filteredSteps = shouldShowRentalStep ? steps : steps.filter(step => step.title !== 'Rental Details');
-  const currentStepIndex = shouldShowRentalStep ? currentStep : (currentStep >= 4 ? currentStep : currentStep);
-  const CurrentStepComponent = filteredSteps[currentStepIndex]?.component;
+  const CurrentStepComponent = allSteps[currentStep]?.component;
 
   const canProceed = () => {
+    console.log('Checking if can proceed from step', currentStep, 'with data:', formData);
+    
     switch (currentStep) {
       case 0: return formData.loanType !== '';
       case 1: return formData.loanAmount > 0 && formData.purchasePrice > 0;
       case 2: return formData.arv > 0;
       case 3: return formData.creditScore > 0 && formData.state !== '';
-      case 4: return !shouldShowRentalStep || (formData.monthlyRent > 0 && formData.monthlyExpenses > 0);
+      case 4: 
+        // This could be rental step OR results step depending on loan type
+        if (shouldShowRentalStep && currentStep === 4) {
+          return formData.monthlyRent > 0 && formData.monthlyExpenses > 0;
+        }
+        return true;
       default: return true;
     }
   };
@@ -104,7 +120,7 @@ const LoanPreQualificationTool = () => {
         <div className="space-y-2">
           <Progress value={progress} className="w-full" />
           <p className="text-sm text-gray-500 text-center">
-            Step {currentStep + 1} of {filteredSteps.length}: {filteredSteps[currentStep]?.title}
+            Step {currentStep + 1} of {allSteps.length}: {allSteps[currentStep]?.title}
           </p>
         </div>
       </CardHeader>
@@ -127,7 +143,7 @@ const LoanPreQualificationTool = () => {
             Previous
           </Button>
           
-          {currentStep < filteredSteps.length - 1 ? (
+          {currentStep < allSteps.length - 1 ? (
             <Button 
               onClick={handleNext}
               disabled={!canProceed()}
