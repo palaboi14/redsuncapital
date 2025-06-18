@@ -5,10 +5,10 @@ import LoanPreQualificationTool from '@/components/LoanPreQualificationTool';
 const CompassPage = () => {
   return (
     <MainLayout>
-      <div className="pt-20 min-h-screen bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4 py-8">
+      <div className="pt-20 min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center">
+        <div className="container mx-auto px-4 py-8 w-full">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-8">
+            <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
                 Red Sun Capital <span className="text-gradient">Compass</span>
               </h1>
