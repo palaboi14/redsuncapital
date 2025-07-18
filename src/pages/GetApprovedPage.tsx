@@ -76,10 +76,10 @@ const GetApprovedPage = () => {
                 <div className="p-6 bg-heritage-500">
                   <h2 className="text-2xl font-bold text-white text-center">Start Your Journey, Here!</h2>
                 </div>
-                <div className="p-6">
+                <div className="p-6 min-h-[800px]">
                   <iframe
                     src="https://api.leadconnectorhq.com/widget/form/xfntqJrE5RQqFOk5tFXt"
-                    style={{ width: '100%', height: '100%', border: 'none', borderRadius: '4px' }}
+                    style={{ width: '100%', height: '800px', border: 'none', borderRadius: '4px' }}
                     id="inline-xfntqJrE5RQqFOk5tFXt" 
                     data-layout="{'id':'INLINE'}"
                     data-trigger-type="alwaysShow"
