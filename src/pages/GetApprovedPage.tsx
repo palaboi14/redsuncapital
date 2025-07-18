@@ -74,7 +74,7 @@ const GetApprovedPage = () => {
             <div className="lg:pl-8">
               <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
                 <div className="p-6 bg-heritage-500">
-                  <h2 className="text-2xl font-bold text-white text-center">Loan Application</h2>
+                  <h2 className="text-2xl font-bold text-white text-center">Start Your Journey, Here!</h2>
                 </div>
                 <div className="p-6">
                   <iframe
