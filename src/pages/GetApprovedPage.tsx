@@ -78,9 +78,9 @@ const GetApprovedPage = () => {
                 </div>
                 <div className="p-6">
                   <iframe
-                    src="https://api.leadconnectorhq.com/widget/form/tmYEtGbd3zERl77T0zhM"
-                    style={{ width: '100%', height: '568px', border: 'none', borderRadius: '4px' }}
-                    id="inline-tmYEtGbd3zERl77T0zhM" 
+                    src="https://api.leadconnectorhq.com/widget/form/xfntqJrE5RQqFOk5tFXt"
+                    style={{ width: '100%', height: '100%', border: 'none', borderRadius: '4px' }}
+                    id="inline-xfntqJrE5RQqFOk5tFXt" 
                     data-layout="{'id':'INLINE'}"
                     data-trigger-type="alwaysShow"
                     data-trigger-value=""
@@ -88,11 +88,11 @@ const GetApprovedPage = () => {
                     data-activation-value=""
                     data-deactivation-type="neverDeactivate"
                     data-deactivation-value=""
-                    data-form-name="Get Approved Application"
-                    data-height="568"
-                    data-layout-iframe-id="inline-tmYEtGbd3zERl77T0zhM"
-                    data-form-id="tmYEtGbd3zERl77T0zhM"
-                    title="Get Approved Application"
+                    data-form-name="META - POF - For Adrian Approval"
+                    data-height="undefined"
+                    data-layout-iframe-id="inline-xfntqJrE5RQqFOk5tFXt"
+                    data-form-id="xfntqJrE5RQqFOk5tFXt"
+                    title="META - POF - For Adrian Approval"
                   />
                 </div>
               </div>
