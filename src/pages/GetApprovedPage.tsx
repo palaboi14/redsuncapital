@@ -38,16 +38,35 @@ const GetApprovedPage = () => {
               
               {/* Additional information section */}
               <div className="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-gray-100">
-                <h3 className="text-xl font-semibold mb-4 text-heritage-600">Why Choose Red Sun Capital?</h3>
-                <p className="text-gray-600 mb-4">
-                  Our streamlined approval process is designed specifically for real estate investors. We understand your needs and work quickly to get you approved for:
-                </p>
-                <ul className="list-disc pl-6 text-gray-600 space-y-2">
-                  <li>Fix & Flip loans</li>
-                  <li>Rental property financing (DSCR)</li>
-                  <li>Ground-up construction loans</li>
-                  <li>Cash-out refinancing</li>
-                </ul>
+                <h3 className="text-xl font-semibold mb-4 text-heritage-600">Why Get Pre-Approved Right Now?</h3>
+                <p className="text-lg italic text-gray-700 mb-6">Skip the line, lock the deal.</p>
+                
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-1">Know Your Buying Power</h4>
+                    <p className="text-gray-600">See the exact cash-out amount you can command—before you ever tour a property.</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-1">Offer Like a Cash Buyer <span className="text-sm text-gray-500">(DSCR Purchase)</span></h4>
+                    <p className="text-gray-600">Sellers won't wait on financing. A Red Sun pre-approval letter puts you at the top of the pile.</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-1">Close in as fast as 10 business days.</h4>
+                    <p className="text-gray-600">Pre-underwriting is already done—documents are ready to sign the moment your offer is accepted.</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-1">Negotiate Harder <span className="text-sm text-gray-500">(DSCR Purchase)</span></h4>
+                    <p className="text-gray-600">Leverage your pre-approval to shave thousands off the purchase price—sellers love certainty.</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-1">Zero Risk to You</h4>
+                    <p className="text-gray-600">Soft-credit pull, no upfront fees, and valid for 90 days.</p>
+                  </div>
+                </div>
               </div>
             </div>
             
