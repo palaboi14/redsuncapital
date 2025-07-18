@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import PrivacyNotice from "./pages/PrivacyNotice";
 import TermsOfService from "./pages/TermsOfService";
 import POFPage from "./pages/POFPage";
+import GetApprovedPage from "./pages/GetApprovedPage";
 import QuickAppPage from "./pages/QuickAppPage";
 import FullAppPage from "./pages/FullAppPage";
 import CompassPage from "./pages/CompassPage";
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/privacy-notice" element={<PrivacyNotice />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/pof" element={<POFPage />} />
+          <Route path="/get-approved" element={<GetApprovedPage />} />
           <Route path="/quick-app" element={<QuickAppPage />} />
           <Route path="/full-app" element={<FullAppPage />} />
           <Route path="/compass" element={<CompassPage />} />
