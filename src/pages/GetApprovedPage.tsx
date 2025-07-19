@@ -26,7 +26,7 @@ const GetApprovedPage = () => {
             <div className="lg:pr-8">
               <div className="mb-8">
                 <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                  Get <span className="text-gradient">Approved.</span>
+                  Get <span className="text-gradient">Pre-Approved.</span>
                 </h1>
                 <p className="text-lg text-gray-600 mb-4">
                   Start your loan application process today.
