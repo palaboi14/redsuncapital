@@ -11,7 +11,7 @@ const OurStory = () => {
       <OurStoryHero />
       <OurStoryContent />
       <OurStoryTestimonial />
-      <TeamSection />
+      {/* <TeamSection /> */}
     </MainLayout>
   );
 };
