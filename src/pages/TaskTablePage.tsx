@@ -16,7 +16,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, CheckSquare } from 'lucide-react';
 
 const CREDENTIALS = {
   username: 'RSC',
@@ -66,16 +66,21 @@ const TaskTablePage = () => {
         <TableCell>
           {details ? (
             <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-              <CollapsibleTrigger className="flex items-center gap-2 w-full text-left">
-                {isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-                {task}
+              <CollapsibleTrigger className="flex items-center gap-3 w-full text-left p-2 rounded-md hover:bg-muted/50 transition-colors">
+                <div className={`p-1 rounded-full ${isOpen ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
+                  {isOpen ? <ChevronDown className="h-5 w-5" /> : <ChevronRight className="h-5 w-5" />}
+                </div>
+                <span className="font-medium">{task}</span>
               </CollapsibleTrigger>
-              <CollapsibleContent className="mt-2">
-                <ul className="list-disc list-inside text-sm text-muted-foreground ml-6">
+              <CollapsibleContent className="mt-3 ml-2">
+                <div className="space-y-2 pl-8 border-l-2 border-muted">
                   {details.map((detail, index) => (
-                    <li key={index}>{detail}</li>
+                    <div key={index} className="flex items-start gap-3 text-sm">
+                      <CheckSquare className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-muted-foreground">{detail}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </CollapsibleContent>
             </Collapsible>
           ) : (
