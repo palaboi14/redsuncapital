@@ -138,7 +138,7 @@ const TaskTablePage = () => {
     <div className="min-h-screen bg-background p-4">
       <div className="container mx-auto max-w-6xl">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold">Loan Officer and Processing Team Task Table</h1>
+          <h1 className="text-3xl font-bold">WHO</h1>
           <Button
             variant="outline"
             onClick={() => {
