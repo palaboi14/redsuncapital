@@ -40,7 +40,7 @@ const App = () => (
           <Route path="/quick-app" element={<QuickAppPage />} />
           <Route path="/full-app" element={<FullAppPage />} />
           <Route path="/compass" element={<CompassPage />} />
-          <Route path="/task-table" element={<TaskTablePage />} />
+          <Route path="/delegate" element={<TaskTablePage />} />
           <Route path="/get-funded" element={
             <main className="pt-20 min-h-screen bg-white">
               <div className="container mx-auto px-4 py-8">
