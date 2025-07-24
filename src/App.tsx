@@ -17,6 +17,7 @@ import GetApprovedPage from "./pages/GetApprovedPage";
 import QuickAppPage from "./pages/QuickAppPage";
 import FullAppPage from "./pages/FullAppPage";
 import CompassPage from "./pages/CompassPage";
+import TaskTablePage from "./pages/TaskTablePage";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/quick-app" element={<QuickAppPage />} />
           <Route path="/full-app" element={<FullAppPage />} />
           <Route path="/compass" element={<CompassPage />} />
+          <Route path="/task-table" element={<TaskTablePage />} />
           <Route path="/get-funded" element={
             <main className="pt-20 min-h-screen bg-white">
               <div className="container mx-auto px-4 py-8">
