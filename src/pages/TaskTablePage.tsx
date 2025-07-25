@@ -51,21 +51,11 @@ const TaskTablePage = () => {
   const TaskRow = ({ 
     task, 
     details, 
-    purchase = false,
-    delayedPurchase = false,
-    refiRT = false,
-    refiCO = false,
-    midCon = false,
     processor, 
     loanOfficer 
   }: { 
     task: string; 
     details?: string[]; 
-    purchase?: boolean;
-    delayedPurchase?: boolean;
-    refiRT?: boolean;
-    refiCO?: boolean;
-    midCon?: boolean;
     processor: boolean; 
     loanOfficer: boolean; 
   }) => {
@@ -96,21 +86,6 @@ const TaskTablePage = () => {
           ) : (
             task
           )}
-        </TableCell>
-        <TableCell className="text-center">
-          {purchase && <span className="text-heritage-500 text-lg font-bold">✔</span>}
-        </TableCell>
-        <TableCell className="text-center">
-          {delayedPurchase && <span className="text-heritage-500 text-lg font-bold">✔</span>}
-        </TableCell>
-        <TableCell className="text-center">
-          {refiRT && <span className="text-heritage-500 text-lg font-bold">✔</span>}
-        </TableCell>
-        <TableCell className="text-center">
-          {refiCO && <span className="text-heritage-500 text-lg font-bold">✔</span>}
-        </TableCell>
-        <TableCell className="text-center">
-          {midCon && <span className="text-heritage-500 text-lg font-bold">✔</span>}
         </TableCell>
         <TableCell className="text-center">
           {processor && <span className="text-heritage-500 text-lg font-bold">✔</span>}
@@ -229,11 +204,6 @@ const TaskTablePage = () => {
                   <TableHeader>
                     <TableRow className="bg-heritage-200/50">
                       <TableHead className="font-semibold py-4 px-6 text-heritage-800">Task</TableHead>
-                      <TableHead className="text-center font-semibold py-4 px-4 text-heritage-800">Purchase</TableHead>
-                      <TableHead className="text-center font-semibold py-4 px-4 text-heritage-800">Delayed Purchase</TableHead>
-                      <TableHead className="text-center font-semibold py-4 px-4 text-heritage-800">Refi - R/T</TableHead>
-                      <TableHead className="text-center font-semibold py-4 px-4 text-heritage-800">Refi - C/O</TableHead>
-                      <TableHead className="text-center font-semibold py-4 px-4 text-heritage-800">Mid Con</TableHead>
                       <TableHead className="text-center font-semibold py-4 px-4 text-heritage-800">Processor</TableHead>
                       <TableHead className="text-center font-semibold py-4 px-4 text-heritage-800">Loan Officer</TableHead>
                     </TableRow>
