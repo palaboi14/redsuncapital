@@ -174,17 +174,19 @@ const TaskTablePage = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-      <Card className="mb-4">
+      <Card className="mb-6 shadow-lg border-0 bg-gradient-to-r from-background to-muted/20">
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-          <CollapsibleTrigger className="flex items-center gap-3 w-full text-left p-6 hover:bg-muted/50 transition-colors">
-            <div className={`p-2 rounded-full ${isOpen ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
+          <CollapsibleTrigger className="flex items-center gap-4 w-full text-left p-8 hover:bg-muted/30 transition-all duration-200 rounded-lg">
+            <div className={`p-3 rounded-full transition-all duration-200 ${isOpen ? 'bg-primary text-primary-foreground shadow-lg' : 'bg-muted/60'}`}>
               {isOpen ? <ChevronDown className="h-6 w-6" /> : <ChevronRight className="h-6 w-6" />}
             </div>
-            <h2 className="text-2xl font-bold">{title}</h2>
+            <h2 className="text-2xl font-bold text-foreground">{title}</h2>
           </CollapsibleTrigger>
           <CollapsibleContent>
-            <CardContent className="pt-0">
-              {children}
+            <CardContent className="pt-0 pb-8 px-8">
+              <div className="mt-4">
+                {children}
+              </div>
             </CardContent>
           </CollapsibleContent>
         </Collapsible>
@@ -193,17 +195,18 @@ const TaskTablePage = () => {
   };
 
   const SubcategoryItem = ({ title }: { title: string }) => (
-    <div className="p-4 border rounded-lg bg-muted/20 mb-2">
-      <h3 className="text-lg font-semibold text-muted-foreground">{title}</h3>
-      <p className="text-sm text-muted-foreground mt-1">Content coming soon...</p>
+    <div className="p-6 border rounded-xl bg-gradient-to-br from-background to-muted/10 mb-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+      <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
+      <p className="text-sm text-muted-foreground">Content coming soon...</p>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-background p-4">
+    <div className="min-h-screen bg-background p-6">
       <div className="container mx-auto max-w-7xl">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold">Delegation Workflows</h1>
+        <div className="flex justify-between items-center mb-8">
+          <div className="w-20"></div> {/* Spacer for centering */}
+          <h1 className="text-4xl font-bold text-center">Delegation Workflows</h1>
           <Button
             variant="outline"
             onClick={() => {
@@ -215,21 +218,21 @@ const TaskTablePage = () => {
           </Button>
         </div>
         
-        <div className="space-y-4">
+        <div className="space-y-6 max-w-6xl mx-auto">{/* Centered content with max width */}
           <CategorySection title="1. General Workflow">
-            <Card>
+            <Card className="shadow-md border-0">
               <CardContent className="p-0">
                 <Table>
                   <TableHeader>
-                    <TableRow>
-                      <TableHead>Task</TableHead>
-                      <TableHead className="text-center">Purchase</TableHead>
-                      <TableHead className="text-center">Delayed Purchase</TableHead>
-                      <TableHead className="text-center">Refi - R/T</TableHead>
-                      <TableHead className="text-center">Refi - C/O</TableHead>
-                      <TableHead className="text-center">Mid Con</TableHead>
-                      <TableHead className="text-center">Processor</TableHead>
-                      <TableHead className="text-center">Loan Officer</TableHead>
+                    <TableRow className="bg-muted/30">
+                      <TableHead className="font-semibold py-4 px-6">Task</TableHead>
+                      <TableHead className="text-center font-semibold py-4 px-4">Purchase</TableHead>
+                      <TableHead className="text-center font-semibold py-4 px-4">Delayed Purchase</TableHead>
+                      <TableHead className="text-center font-semibold py-4 px-4">Refi - R/T</TableHead>
+                      <TableHead className="text-center font-semibold py-4 px-4">Refi - C/O</TableHead>
+                      <TableHead className="text-center font-semibold py-4 px-4">Mid Con</TableHead>
+                      <TableHead className="text-center font-semibold py-4 px-4">Processor</TableHead>
+                      <TableHead className="text-center font-semibold py-4 px-4">Loan Officer</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
