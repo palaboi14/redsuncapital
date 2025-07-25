@@ -51,11 +51,21 @@ const TaskTablePage = () => {
   const TaskRow = ({ 
     task, 
     details, 
+    purchase = false,
+    delayedPurchase = false,
+    refiRT = false,
+    refiCO = false,
+    midCon = false,
     processor, 
     loanOfficer 
   }: { 
     task: string; 
     details?: string[]; 
+    purchase?: boolean;
+    delayedPurchase?: boolean;
+    refiRT?: boolean;
+    refiCO?: boolean;
+    midCon?: boolean;
     processor: boolean; 
     loanOfficer: boolean; 
   }) => {
@@ -86,6 +96,21 @@ const TaskTablePage = () => {
           ) : (
             task
           )}
+        </TableCell>
+        <TableCell className="text-center">
+          {purchase && <span className="text-green-600 text-lg">✔</span>}
+        </TableCell>
+        <TableCell className="text-center">
+          {delayedPurchase && <span className="text-green-600 text-lg">✔</span>}
+        </TableCell>
+        <TableCell className="text-center">
+          {refiRT && <span className="text-green-600 text-lg">✔</span>}
+        </TableCell>
+        <TableCell className="text-center">
+          {refiCO && <span className="text-green-600 text-lg">✔</span>}
+        </TableCell>
+        <TableCell className="text-center">
+          {midCon && <span className="text-green-600 text-lg">✔</span>}
         </TableCell>
         <TableCell className="text-center">
           {processor && <span className="text-green-600 text-lg">✔</span>}
@@ -139,11 +164,46 @@ const TaskTablePage = () => {
     );
   }
 
+  const CategorySection = ({ 
+    title, 
+    children 
+  }: { 
+    title: string; 
+    children: React.ReactNode; 
+  }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <Card className="mb-4">
+        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+          <CollapsibleTrigger className="flex items-center gap-3 w-full text-left p-6 hover:bg-muted/50 transition-colors">
+            <div className={`p-2 rounded-full ${isOpen ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
+              {isOpen ? <ChevronDown className="h-6 w-6" /> : <ChevronRight className="h-6 w-6" />}
+            </div>
+            <h2 className="text-2xl font-bold">{title}</h2>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <CardContent className="pt-0">
+              {children}
+            </CardContent>
+          </CollapsibleContent>
+        </Collapsible>
+      </Card>
+    );
+  };
+
+  const SubcategoryItem = ({ title }: { title: string }) => (
+    <div className="p-4 border rounded-lg bg-muted/20 mb-2">
+      <h3 className="text-lg font-semibold text-muted-foreground">{title}</h3>
+      <p className="text-sm text-muted-foreground mt-1">Content coming soon...</p>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-background p-4">
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-7xl">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold">WHO</h1>
+          <h1 className="text-3xl font-bold">Delegation Workflows</h1>
           <Button
             variant="outline"
             onClick={() => {
@@ -155,144 +215,184 @@ const TaskTablePage = () => {
           </Button>
         </div>
         
-        <Card>
-          <CardContent className="p-0">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Task</TableHead>
-                  <TableHead className="text-center">Processor</TableHead>
-                  <TableHead className="text-center">Loan Officer</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TaskRow
-                  task="Initial Borrower Intake / Discovery Call"
-                  details={[
-                    "LO Calls borrower to confirm loan terms / funding needs",
-                    "Get LLC information and borrower contact details"
-                  ]}
-                  processor={false}
-                  loanOfficer={true}
-                />
-                <TaskRow
-                  task="Gather Basic Deal Info"
-                  details={[
-                    "Get Subject Property Address",
-                    "Get accurate funding needs - Loan Amount, Existing Liens, Rental Income, Rehab Cost/budget, Construction Budget, etc."
-                  ]}
-                  processor={false}
-                  loanOfficer={true}
-                />
-                <TaskRow
-                  task="Gather Track Record Data From Borrower"
-                  details={[
-                    "Collect last 10-15 closed and sold rehab projects from the last 3 years",
-                    "Collect last 10-15 sold construction projects from the last 3 years",
-                    "Collect the LLC name it sold as, sold price, rehab cost, original purchase price, construction budget"
-                  ]}
-                  processor={false}
-                  loanOfficer={true}
-                />
-                <TaskRow
-                  task="Gather Scope of Work/Rehab/Construction Data"
-                  processor={false}
-                  loanOfficer={true}
-                />
-                <TaskRow
-                  task="Loan Program Matching / Advising Client"
-                  processor={false}
-                  loanOfficer={true}
-                />
-                <TaskRow
-                  task="Preliminary Loan Approval / Commitment Communication"
-                  processor={false}
-                  loanOfficer={true}
-                />
-                <TaskRow
-                  task="Borrower Relationship Management / Frontline Communication"
-                  processor={false}
-                  loanOfficer={true}
-                />
-                <TaskRow
-                  task="Provide Mortgage Statement (for Payoff/VOM)"
-                  processor={false}
-                  loanOfficer={true}
-                />
-                <TaskRow
-                  task="Follow Up for Signed LOI / Term Sheet"
-                  processor={true}
-                  loanOfficer={true}
-                />
-                <TaskRow
-                  task="Monitor LA (Loan Agreement) Signing"
-                  processor={true}
-                  loanOfficer={true}
-                />
-                <TaskRow
-                  task="Follow up on Missing Documents (Title, Insurance, Appraisal)"
-                  processor={true}
-                  loanOfficer={true}
-                />
-                <TaskRow
-                  task="Ensure Scope Matches Rehab Budget in Term Sheet"
-                  processor={true}
-                  loanOfficer={false}
-                />
-                <TaskRow
-                  task="Review Track Record Data"
-                  processor={true}
-                  loanOfficer={false}
-                />
-                <TaskRow
-                  task="Send LOI / Term Sheet to Borrower"
-                  processor={true}
-                  loanOfficer={false}
-                />
-                <TaskRow
-                  task="Escalate / Prioritize Urgent Files"
-                  processor={true}
-                  loanOfficer={false}
-                />
-                <TaskRow
-                  task="Appraisal Ordering / Follow Up"
-                  processor={true}
-                  loanOfficer={false}
-                />
-                <TaskRow
-                  task="Title Ordering / Status Follow Up"
-                  processor={true}
-                  loanOfficer={false}
-                />
-                <TaskRow
-                  task="Insurance Coordination / Collection"
-                  processor={true}
-                  loanOfficer={false}
-                />
-                <TaskRow
-                  task="Payoff Ordering / Coordination"
-                  processor={true}
-                  loanOfficer={false}
-                />
-                <TaskRow
-                  task="Tracking Submission Status / Internal Status Updates"
-                  processor={true}
-                  loanOfficer={false}
-                />
-                <TaskRow
-                  task="Document Review / Quality Check for Submissions"
-                  processor={true}
-                  loanOfficer={false}
-                />
-                <TaskRow
-                  task="System Updates & Internal Notes for Team Visibility"
-                  processor={true}
-                  loanOfficer={false}
-                />
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
+        <div className="space-y-4">
+          <CategorySection title="1. General Workflow">
+            <Card>
+              <CardContent className="p-0">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Task</TableHead>
+                      <TableHead className="text-center">Purchase</TableHead>
+                      <TableHead className="text-center">Delayed Purchase</TableHead>
+                      <TableHead className="text-center">Refi - R/T</TableHead>
+                      <TableHead className="text-center">Refi - C/O</TableHead>
+                      <TableHead className="text-center">Mid Con</TableHead>
+                      <TableHead className="text-center">Processor</TableHead>
+                      <TableHead className="text-center">Loan Officer</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TaskRow
+                      task="Initial Borrower Intake / Discovery Call"
+                      details={[
+                        "LO Calls borrower to confirm loan terms / funding needs",
+                        "Get LLC information and borrower contact details"
+                      ]}
+                      processor={false}
+                      loanOfficer={true}
+                    />
+                    <TaskRow
+                      task="Gather Basic Deal Info"
+                      details={[
+                        "Get Subject Property Address",
+                        "Get accurate funding needs - Loan Amount, Existing Liens, Rental Income, Rehab Cost/budget, Construction Budget, etc."
+                      ]}
+                      processor={false}
+                      loanOfficer={true}
+                    />
+                    <TaskRow
+                      task="Gather Track Record Data From Borrower"
+                      details={[
+                        "Collect last 10-15 closed and sold rehab projects from the last 3 years",
+                        "Collect last 10-15 sold construction projects from the last 3 years",
+                        "Collect the LLC name it sold as, sold price, rehab cost, original purchase price, construction budget"
+                      ]}
+                      processor={false}
+                      loanOfficer={true}
+                    />
+                    <TaskRow
+                      task="Gather Scope of Work/Rehab/Construction Data"
+                      processor={false}
+                      loanOfficer={true}
+                    />
+                    <TaskRow
+                      task="Loan Program Matching / Advising Client"
+                      processor={false}
+                      loanOfficer={true}
+                    />
+                    <TaskRow
+                      task="Preliminary Loan Approval / Commitment Communication"
+                      processor={false}
+                      loanOfficer={true}
+                    />
+                    <TaskRow
+                      task="Borrower Relationship Management / Frontline Communication"
+                      processor={false}
+                      loanOfficer={true}
+                    />
+                    <TaskRow
+                      task="Provide Mortgage Statement (for Payoff/VOM)"
+                      processor={false}
+                      loanOfficer={true}
+                    />
+                    <TaskRow
+                      task="Follow Up for Signed LOI / Term Sheet"
+                      processor={true}
+                      loanOfficer={true}
+                    />
+                    <TaskRow
+                      task="Monitor LA (Loan Agreement) Signing"
+                      processor={true}
+                      loanOfficer={true}
+                    />
+                    <TaskRow
+                      task="Follow up on Missing Documents (Title, Insurance, Appraisal)"
+                      processor={true}
+                      loanOfficer={true}
+                    />
+                    <TaskRow
+                      task="Ensure Scope Matches Rehab Budget in Term Sheet"
+                      processor={true}
+                      loanOfficer={false}
+                    />
+                    <TaskRow
+                      task="Review Track Record Data"
+                      processor={true}
+                      loanOfficer={false}
+                    />
+                    <TaskRow
+                      task="Send LOI / Term Sheet to Borrower"
+                      processor={true}
+                      loanOfficer={false}
+                    />
+                    <TaskRow
+                      task="Escalate / Prioritize Urgent Files"
+                      processor={true}
+                      loanOfficer={false}
+                    />
+                    <TaskRow
+                      task="Appraisal Ordering / Follow Up"
+                      processor={true}
+                      loanOfficer={false}
+                    />
+                    <TaskRow
+                      task="Title Ordering / Status Follow Up"
+                      processor={true}
+                      loanOfficer={false}
+                    />
+                    <TaskRow
+                      task="Insurance Coordination / Collection"
+                      processor={true}
+                      loanOfficer={false}
+                    />
+                    <TaskRow
+                      task="Payoff Ordering / Coordination"
+                      processor={true}
+                      loanOfficer={false}
+                    />
+                    <TaskRow
+                      task="Tracking Submission Status / Internal Status Updates"
+                      processor={true}
+                      loanOfficer={false}
+                    />
+                    <TaskRow
+                      task="Document Review / Quality Check for Submissions"
+                      processor={true}
+                      loanOfficer={false}
+                    />
+                    <TaskRow
+                      task="System Updates & Internal Notes for Team Visibility"
+                      processor={true}
+                      loanOfficer={false}
+                    />
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </CategorySection>
+
+          <CategorySection title="2. TVC Workflow">
+            <div className="space-y-3">
+              <SubcategoryItem title="2.1 TVC - RTL" />
+              <SubcategoryItem title="2.2 TVC - Bridge" />
+              <SubcategoryItem title="2.3 TVC - DSCR" />
+              <SubcategoryItem title="2.4 TVC - GUC" />
+            </div>
+          </CategorySection>
+
+          <CategorySection title="3. IceCap Workflow">
+            <div className="space-y-3">
+              <SubcategoryItem title="3.1 DSCR" />
+            </div>
+          </CategorySection>
+
+          <CategorySection title="4. Funding Door Workflow">
+            <div className="space-y-3">
+              <SubcategoryItem title="4.1 FD - RTL/Rehab" />
+              <SubcategoryItem title="4.2 FD - Bridge" />
+              <SubcategoryItem title="4.3 FD - DSCR" />
+              <SubcategoryItem title="4.4 FD - GUC" />
+            </div>
+          </CategorySection>
+
+          <CategorySection title="5. Archwest Workflow">
+            <div className="space-y-3">
+              <SubcategoryItem title="5.1 ARCH - RTL" />
+              <SubcategoryItem title="5.2 ARCH - Bridge" />
+            </div>
+          </CategorySection>
+        </div>
       </div>
     </div>
   );
