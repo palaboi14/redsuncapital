@@ -15,8 +15,8 @@ const Footer = () => {
               />
               <img 
                 alt="American Association of Private Lenders - Proud Member" 
-                className="h-16 w-auto" 
-                src="/lovable-uploads/bf5a9bbe-dfc6-4b0b-99e9-8ef05e4e5818.png" 
+                className="h-20 w-auto" 
+                src="/lovable-uploads/6ae7fd49-a292-43cc-bdc1-5a893ef2ad5a.png" 
               />
             </div>
           </div>
