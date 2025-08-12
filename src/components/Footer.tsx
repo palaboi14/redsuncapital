@@ -1,13 +1,23 @@
-
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
+
 const Footer = () => {
-  return <footer className="bg-gradient-to-b from-heritage-800 to-heritage-900 text-white pt-16 pb-8">
+  return (
+    <footer className="bg-gradient-to-b from-heritage-800 to-heritage-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-full md:col-span-1">
             <div className="mb-4 px-[82px]">
-              <img alt="Red Sun Capital, LLC" className="h-20 brightness-0 invert" src="/lovable-uploads/853816ae-fa88-43e7-af47-3bf08cd90a75.png" />
+              <img 
+                alt="Red Sun Capital, LLC" 
+                className="h-20 brightness-0 invert mb-6" 
+                src="/lovable-uploads/853816ae-fa88-43e7-af47-3bf08cd90a75.png" 
+              />
+              <img 
+                alt="American Association of Private Lenders - Proud Member" 
+                className="h-16 w-auto" 
+                src="/lovable-uploads/bf5a9bbe-dfc6-4b0b-99e9-8ef05e4e5818.png" 
+              />
             </div>
           </div>
           
@@ -101,6 +111,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;
