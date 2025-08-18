@@ -19,6 +19,7 @@ import FullAppPage from "./pages/FullAppPage";
 import CompassPage from "./pages/CompassPage";
 import TaskTablePage from "./pages/TaskTablePage";
 import KBPage from "./pages/KBPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/compass" element={<CompassPage />} />
           <Route path="/delegate" element={<TaskTablePage />} />
           <Route path="/kb" element={<KBPage />} />
+          <Route path="/analytics" element={<AnalyticsPage />} />
           <Route path="/get-funded" element={
             <main className="pt-20 min-h-screen bg-white">
               <div className="container mx-auto px-4 py-8">
