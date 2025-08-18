@@ -43,6 +43,12 @@ import {
   DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog";
+import { 
+  trackLoanCalculation, 
+  trackLoanProductView, 
+  trackDocumentRequirementsView, 
+  trackGetStartedClick 
+} from '@/utils/metaPixel';
 
 interface LoanProductProps {
   icon: React.ReactNode;
@@ -137,6 +143,7 @@ const DocumentRequirementsDialog = ({
       <DialogTrigger asChild>
         <button 
           className="flex items-center gap-1 text-sm text-heritage-500 hover:text-heritage-600 mt-3"
+          onClick={() => trackDocumentRequirementsView(title)}
         >
           <FileText className="h-4 w-4" />
           <span>Documents & Requirements</span>
@@ -165,15 +172,16 @@ const DocumentRequirementsDialog = ({
               </Button>
             </DialogClose>
             <DialogTrigger asChild>
-              <Button 
-                className="bg-heritage-500 hover:bg-heritage-600 text-white"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              >
-                Get Started
-                <ArrowRight className="ml-2" size={16} />
-              </Button>
+            <Button 
+              className="bg-heritage-500 hover:bg-heritage-600 text-white"
+              onClick={(e) => {
+                e.stopPropagation();
+                trackGetStartedClick('document_requirements', title);
+              }}
+            >
+              Get Started
+              <ArrowRight className="ml-2" size={16} />
+            </Button>
             </DialogTrigger>
           </div>
         </div>
@@ -194,10 +202,15 @@ const LoanProduct = ({
   longDescription,
   documentRequirements
 }: LoanProductProps) => {
+  const handleClick = () => {
+    onClick();
+    trackLoanProductView(title);
+  };
+
   return (
     <div className="mb-4">
       <div 
-        onClick={onClick}
+        onClick={handleClick}
         className={cn(
           "cursor-pointer p-6 rounded-xl transition-all duration-300 border",
           active 
@@ -523,6 +536,8 @@ const LoanCalculator = ({ productType }: { productType: string }) => {
                       onValueChange={(vals) => {
                         field.onChange(vals[0]);
                         validateInputs();
+                        // Track loan calculation changes
+                        trackLoanCalculation(productType, vals[0], form.watch("loanTerm"));
                       }}
                       className="mt-2"
                     />

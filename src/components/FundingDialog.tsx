@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { trackGetStartedClick } from '@/utils/metaPixel';
 
 interface FundingDialogProps {
   className?: string;
@@ -23,6 +24,7 @@ const FundingDialog = ({ className, buttonText = "GET MY FUNDING", id }: Funding
   const isMobile = useIsMobile();
   
   const handleClick = () => {
+    trackGetStartedClick('hero_button', buttonText);
     if (isMobile) {
       navigate('/get-funded');
     }

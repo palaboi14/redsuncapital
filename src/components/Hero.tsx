@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BlurredCircle from './BlurredCircle';
 import FundingDialog from './FundingDialog';
+import { trackLogin } from '@/utils/metaPixel';
 
 const Hero = () => {
   return (
@@ -56,6 +57,7 @@ const Hero = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white shadow-sm hover:shadow-md border border-gray-200 rounded-lg p-4 text-center transition-all duration-300 hover:-translate-y-1"
+            onClick={() => trackLogin('broker_login')}
           >
             <span className="font-medium">Broker Login</span>
           </a>
@@ -64,6 +66,7 @@ const Hero = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white shadow-sm hover:shadow-md border border-gray-200 rounded-lg p-4 text-center transition-all duration-300 hover:-translate-y-1"
+            onClick={() => trackLogin('borrower_login')}
           >
             <span className="font-medium">Borrower Login</span>
           </a>
