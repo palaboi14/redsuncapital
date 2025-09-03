@@ -22,7 +22,7 @@ const Footer = () => {
                 <img 
                   alt="Equal Housing Opportunity" 
                   className="h-24 w-24 brightness-0 invert" 
-                  src="/lovable-uploads/3898f57a-8fdd-427e-80f4-07771e584557.png" 
+                  src="/lovable-uploads/4106635f-5aaa-4847-84bd-b9e38c82a339.png" 
                 />
               </div>
             </div>
