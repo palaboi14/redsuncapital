@@ -13,11 +13,18 @@ const Footer = () => {
                 className="h-20 brightness-0 invert mb-6" 
                 src="/lovable-uploads/853816ae-fa88-43e7-af47-3bf08cd90a75.png" 
               />
-              <img 
-                alt="American Association of Private Lenders - Proud Member" 
-                className="h-24 w-40" 
-                src="/lovable-uploads/6ae7fd49-a292-43cc-bdc1-5a893ef2ad5a.png" 
-              />
+              <div className="flex items-center gap-4">
+                <img 
+                  alt="American Association of Private Lenders - Proud Member" 
+                  className="h-24 w-40" 
+                  src="/lovable-uploads/6ae7fd49-a292-43cc-bdc1-5a893ef2ad5a.png" 
+                />
+                <img 
+                  alt="Equal Housing Opportunity" 
+                  className="h-24 w-24 brightness-0 invert" 
+                  src="/lovable-uploads/3898f57a-8fdd-427e-80f4-07771e584557.png" 
+                />
+              </div>
             </div>
           </div>
           
