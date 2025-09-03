@@ -107,6 +107,9 @@ const Footer = () => {
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
               © Copyright Red Sun Capital, LLC {new Date().getFullYear()}
             </p>
+            <p className="text-gray-500 text-xs mb-4 md:mb-0 max-w-4xl leading-relaxed">
+              © Red Sun Capital, LLC. 2025 All Rights Reserved. Red Sun Capital, LLC is a private lender and brokerage company. All loans are offered strictly for business or commercial purposes and are not intended for personal, family, or household use. Loan product availability may be limited in certain states and jurisdictions. This is not a commitment to lend. All loans are subject to borrower qualification, due diligence, underwriting, and credit approval at Red Sun Capital's sole and absolute discretion. Rates, terms, and fees are subject to change at any time without notice and may vary by borrower profile, property type, and state regulations.
+            </p>
             <div className="flex space-x-6">
               <a href="https://redsuncapital.com/privacy-notice" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Privacy Notice
