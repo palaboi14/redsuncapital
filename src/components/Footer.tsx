@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="mb-4 px-[82px]">
               <img 
                 alt="Red Sun Capital, LLC" 
-                className="h-20 brightness-0 invert mb-6" 
+                className="h-32 brightness-0 invert mb-6" 
                 src="/lovable-uploads/853816ae-fa88-43e7-af47-3bf08cd90a75.png" 
               />
               <div className="flex items-center gap-4">
